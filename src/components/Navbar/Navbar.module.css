@@ -1,0 +1,47 @@
+.navbar{
+	grid-area: 3/1/4/2;
+	background: #6fb2ff;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	position: sticky;
+	bottom: 0;
+	z-index: 1;
+}
+@media(min-width: 480px) {
+	.navbar {
+		grid-area: 2/1/3/2;
+		padding: 10px;
+		position: static;
+		background: #edeef0;
+		color: #6fb2ff;
+		grid-template: repeat(4, 30px) / 1fr;
+		border-right: 1px #6fb2ff solid;
+	}
+}
+@media(min-width: 768px) {
+	.navbar {
+		grid-area: 2/2/3/3;
+	}
+}
+	.item {
+		text-align: center;
+		line-height: 50px;
+		color: #fff;
+	}
+	@media(min-width: 480px) {
+		.item {
+			font-size: 90%;
+			text-align: start;
+			line-height: 30px;
+			color: #000;
+		}
+	}
+		.itemActive {
+			background: #4a76a8;
+		}
+		@media(min-width: 480px) {
+			.itemActive {
+				background: #edeef0;
+				color: #6fb2ff;
+			}
+		}

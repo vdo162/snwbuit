@@ -1,0 +1,38 @@
+.friends {
+	display: grid;
+}
+	.friendsItem {
+		padding: 15px 15px;
+		border-bottom: 2px solid #edeef0;
+		display: grid;
+		grid-template-columns: minmax(50px, 1fr) 4fr;
+	}
+		.friendsImg {
+			padding-bottom: 100%;
+			position: relative;
+		}
+			.friendsImg img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+		.friendsInfo {
+			font-size: 80%;
+			font-weight: bold; 
+			padding: 10px 0px 5px 20px;
+			display: grid;
+			grid-template-rows: 1fr auto;
+		}
+			.friendsItem a{
+				color: #6fb2ff;
+				font-weight: normal; 
+			}
+			.friendsSubcribe{
+				padding-right: 10px;
+				border-right: 1px solid #edeef0;
+			}
+			.friendsMore{
+				padding-left: 10px;
+			}

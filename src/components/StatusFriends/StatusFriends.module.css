@@ -1,0 +1,77 @@
+.statusFriends {
+	display: none;
+}
+@media(min-width: 768px) {
+	.statusFriends {
+		display: block;
+		grid-area: 2/4/3/5;
+	}
+}
+	.statusSearch {
+		padding: 13px 15px 13px 10px;
+		border-bottom: 1px solid #ccc;
+		border-image: linear-gradient(to right, #edeef0, #ccc, #edeef0) 0 0 10% 0;
+	}
+		.statusSearchWrap {
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			display: grid;
+			grid-template-columns: 20px 1fr;
+		}
+			.statusSearchIcon {
+				align-self: center;
+				justify-self: center;
+				width: 60%;
+			}
+			.statusSearchInput {
+				border: none;
+				background: none;
+				width: 110px;
+				outline: none;
+			}	
+	.statusItems {
+	}
+		.statusItem {
+			padding: 8px 15px 8px 10px;
+			border-bottom: 1px solid #ccc;
+			border-image: linear-gradient(to right, #edeef0, #ccc, #edeef0) 0 0 10% 0;
+			display: grid;
+			grid-template-columns: 30px 110px 10px;
+		}
+			.statusAva {
+				position: relative;
+				padding-bottom: 100%;
+				border-radius: 500px;
+				overflow: hidden;
+			}
+				.statusAva img{
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			.statusName {
+				padding-left: 5px;
+				align-self: center;
+				overflow: hidden;
+				font-size: 70%;
+				font-weight: bold;
+			}
+			.status{
+				align-self: center;
+				width: 5px;
+				border-radius: 5px;
+				padding: 2px;
+			}
+			.status.online {
+				background: #6fb2ff;
+			}
+			.status.offline {
+				background: #bbb;
+			}
+				.status div{
+					background: #edeef0;
+					width: 5px;
+					height: 5px;
+					border-radius: 3px;
+				}

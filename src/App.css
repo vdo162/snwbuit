@@ -1,0 +1,15 @@
+.appWrapper {
+	height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+@media(min-width: 480px) {
+	.appWrapper {
+		grid-template: auto 1fr / minmax(150px, auto) 1fr;
+	}
+}
+@media(min-width: 768px) {
+	.appWrapper {
+		grid-template: auto 1fr / 1fr 150px minmax(200px, 585px) 170px 1fr;
+	}
+}
