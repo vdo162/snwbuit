@@ -1,5 +1,6 @@
 import s from './Dialogs.module.css';
 import ava from '../../../img/icon.jpg';
+import {NavLink} from 'react-router-dom';
 
 {/*<img src={ava} alt=''/>*/}
 
@@ -8,13 +9,13 @@ export const Dialogs = (props) => {
 	<div className={s.dialogs}>
 		<div className={s.dialogsItems}>
 			<div className={s.dialog}>
-				name
+				<NavLink to='/dialogs/1'>Dim</NavLink>
 			</div>
 			<div className={s.dialog + ' ' + s.active}>
-				name
+				<NavLink to='/dialogs/2'>And</NavLink>
 			</div>
 			<div className={s.dialog}>
-				name
+				<NavLink to='/dialogs/3'>Sv</NavLink>
 			</div>
 		</div>
 		<div className={s.messages}>
