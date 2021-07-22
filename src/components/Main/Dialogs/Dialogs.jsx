@@ -3,31 +3,36 @@ import ava from '../../../img/icon.jpg';
 import {NavLink} from 'react-router-dom';
 
 {/*<img src={ava} alt=''/>*/}
+const DialogItem = (props) => {
+	let path = '/dialogs/' + props.id;
+	return (
+		<div className={s.dialog + ' ' + s.active}>
+			<NavLink to={path}>{props.name}</NavLink>
+		</div>
+	)
+}
+
+const Message = (props) => {
+	return (
+		<div className={s.message}>
+			{props.message}
+		</div>
+	)
+}
 
 export const Dialogs = (props) => {
   return (
 	<div className={s.dialogs}>
 		<div className={s.dialogsItems}>
-			<div className={s.dialog}>
-				<NavLink to='/dialogs/1'>Dim</NavLink>
-			</div>
-			<div className={s.dialog + ' ' + s.active}>
-				<NavLink to='/dialogs/2'>And</NavLink>
-			</div>
-			<div className={s.dialog}>
-				<NavLink to='/dialogs/3'>Sv</NavLink>
-			</div>
+			<DialogItem name='Dim' id='1' />
+			<DialogItem name='Andr' id='2' />
+			<DialogItem name='Svet' id='3' />
 		</div>
 		<div className={s.messages}>
-			<div className={s.message}>
-				Hi
-			</div>
-			<div className={s.message}>
-				Who are you?
-			</div>
-			<div className={s.message}>
-				Yo
-			</div>
+			<Message message='Hi'/>
+			<Message message='Hey'/>
+			<Message message='Yo'/>
+			<Message message='Buy'/>
 		</div>
 	</div>
   );
