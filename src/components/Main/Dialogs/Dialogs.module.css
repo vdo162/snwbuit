@@ -1,9 +1,14 @@
 .dialogs {
 	display: grid;
-	grid-template-columns: 1fr 5fr;
+	grid-template-columns: 1fr 4fr;
 }
 	.dialogsItems {
 	}
+		.dialog img{
+			width: 20px;
+			height: 20px;
+			border-radius: 10px;
+		}
 		.dialog a{
 			color: black;
 		}
