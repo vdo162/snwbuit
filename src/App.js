@@ -5,13 +5,13 @@ import {Main} from './components/Main/Main.jsx';
 import {StatusFriends} from './components/StatusFriends/StatusFriends.jsx';
 import {BrowserRouter} from 'react-router-dom';
 
-const App = () => {
+const App = (props) => {
   return (
 	<BrowserRouter>
 		<div className='appWrapper'>
 			<Header />
 			<Navbar />
-			<Main />
+			<Main posts={props.posts} dialogs={props.dialogs} messages={props.messages}/>
 			<StatusFriends />		
 		</div>
 	</BrowserRouter>
