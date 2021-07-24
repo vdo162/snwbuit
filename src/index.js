@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import {state} from './redux/state.js';
 import {addPost} from './redux/state.js';
- 
+
 export let rerender = () => {
 	ReactDOM.render(
 	  <React.StrictMode>
