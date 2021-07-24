@@ -11,7 +11,7 @@ const App = (props) => {
 		<div className='appWrapper'>
 			<Header />
 			<Navbar />
-			<Main posts={props.posts} dialogs={props.dialogs} messages={props.messages}/>
+			<Main state={props.state}/>
 			<StatusFriends />		
 		</div>
 	</BrowserRouter>
