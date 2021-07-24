@@ -1,13 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
 import {rerenderEntireTree} from './render';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom';
 import {state} from './redux/state.js';
 import {addPost} from './redux/state.js';
 
-rerenderEntireTree();
+rerenderEntireTree(state, addPost);
 reportWebVitals();
 
 // If you want to start measuring performance in your app, pass a function
