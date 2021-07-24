@@ -6,7 +6,7 @@ export const MyPosts = (props) => {
 	let postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>);
 	let post = React.createRef();
 	let addNewPost = () => {
-		alert(post.current.value);
+		console.log(post.current.value);
 	}
 	return (
 		<div className={s.postBlock}>
