@@ -1,5 +1,4 @@
-import React from 'react';
-import {rerender} from '../index.js';
+import {rerenderEntireTree} from '../render.js';
 
 export let state = {
 	profilePage:{
@@ -37,4 +36,5 @@ export let addPost = (postMessage) => {
 	};
 	
 	state.profilePage.posts.push(newPost);
+	rerenderEntireTree();
 }
