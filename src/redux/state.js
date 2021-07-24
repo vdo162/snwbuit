@@ -1,3 +1,6 @@
+import React from 'react';
+import {rerender} from '../index.js';
+
 export let state = {
 	profilePage:{
 		posts: [
@@ -26,5 +29,11 @@ export let state = {
 	}
 }; 
 
+export let addPost = newPost => {
+	state.profilePage.posts.push({id: 5, message: newPost, likesCount: 22});
+	rerender();
+}
 
 
+
+window.state = state;
