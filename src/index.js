@@ -1,9 +1,8 @@
 import {rerenderEntireTree} from './render';
 import reportWebVitals from './reportWebVitals';
 import {state} from './redux/state.js';
-import {addPost} from './redux/state.js';
 
-rerenderEntireTree(state, addPost);
+rerenderEntireTree(state);
 reportWebVitals();
 
 // If you want to start measuring performance in your app, pass a function
