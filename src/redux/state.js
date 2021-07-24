@@ -38,5 +38,3 @@ export let addPost = (postMessage) => {
 	
 	state.profilePage.posts.push(newPost);
 }
-
-window.state = state;
