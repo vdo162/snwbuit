@@ -7,7 +7,8 @@ export let state = {
 			{id: 2, message: "It's my first post", likesCount: 11},
 			{id: 3, message: "Bla", likesCount: 1},
 			{id: 4, message: "Data", likesCount: 22}
-		]
+		] ,
+		textNewPost: 'd'
 	},
 	dialogsPage: {
 		messages: [
@@ -15,7 +16,7 @@ export let state = {
 			{id: 2, message: 'Yo'},
 			{id: 3, message: 'Hey'},
 			{id: 4, message: 'Buy'}
-		], 
+		],
 		
 		dialogs: [
 			{id: 1, name: 'Dim'},
