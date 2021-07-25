@@ -11,7 +11,6 @@ export const MyPosts = (props) => {
 	let onPostChange = (e) => {
 		props.updateNewPostText(e.target.value);
 	}
-	
 	return (
 		<div className={s.postBlock}>
 			<h3>My posts</h3>
