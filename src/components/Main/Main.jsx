@@ -7,7 +7,7 @@ import {Route} from 'react-router-dom';
 export const Main = (props) => {
   return (
 	<div className={s.main}>
-		<Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>}/>
+		<Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
 		<Route path='/dialogs' render={() => <Dialogs  state={props.state.dialogsPage}/>}/>
 		<Route path='/friends' render={() => <Friends/>}/>
 	</div>
