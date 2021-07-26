@@ -4,7 +4,7 @@ import './index.css'
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import App from './App';
-import {store} from './redux/store.js';
+import {store} from './redux/redux-store.js';
 
 export let rerenderEntireTree = (store) => {
 	ReactDOM.render(
@@ -19,7 +19,7 @@ export let rerenderEntireTree = (store) => {
 	);
 }
 rerenderEntireTree(store);
-store.subscribe(rerenderEntireTree);
+store.subscribe(() => rerenderEntireTree(store));
 reportWebVitals();
 
 // If you want to start measuring performance in your app, pass a function
