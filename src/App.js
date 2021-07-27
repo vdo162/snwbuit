@@ -9,7 +9,7 @@ const App = (props) => {
 	<div className='appWrapper'>
 		<Header />
 		<Navbar />
-		<Main store={props.store}/>
+		<Main />
 		<StatusFriends />		
 	</div>
   );
