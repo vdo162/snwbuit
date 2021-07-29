@@ -1,5 +1,3 @@
-import ava from '../img/icon.jpg';
-
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
 export const SET_USERS = 'SET-USERS';
