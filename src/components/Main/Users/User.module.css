@@ -1,0 +1,15 @@
+.User {
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	margin-bottom: 20px;
+}
+.ava {
+	 
+}
+	.img {
+		width: 80px;
+	}
+
+.info {
+	 
+}

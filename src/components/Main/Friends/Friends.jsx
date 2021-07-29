@@ -1,7 +1,7 @@
 import s from './Friends.module.css';
 import icon from '../../../img/icon.jpg';
 
-export const Friends = () => {
+const Friends = () => {
   return (
 	<div className={s.friends}>
 		<div className={s.friendsItem}>
@@ -30,3 +30,5 @@ export const Friends = () => {
 	</div>
   );
 }
+
+export default Friends;
