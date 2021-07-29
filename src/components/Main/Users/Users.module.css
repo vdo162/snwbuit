@@ -1,0 +1,14 @@
+/*.Users div {border: 1px solid red}*/
+
+.img {
+	width: 80px;
+}
+
+.info {
+	float: left;
+	width: 45%;
+}
+
+.text {
+	font-size: 80%;
+}
