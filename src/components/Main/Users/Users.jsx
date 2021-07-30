@@ -3,19 +3,21 @@ import ava from '../../../img/icon.jpg';
 import * as axios from 'axios';
 
 export const Users = (props) => {
-	if (props.users.length === 0) {
-		axios.get('https://social-network.samuraijs.com/api/1.0/users')
-			.then((response)=>{
-				props.setUsers(response.data.items)
-			});
-	}
+	let setUsers = () => {
+		if (props.users.length === 0) {
+			axios.get('https://social-network.samuraijs.com/api/1.0/users?count=3')
+				.then((response)=>{
+					props.setUsers(response.data.items)
+				});
+		};
+	};
 	return (
 		<div>
 			<div>
 				{
 					props.users.map(u => <User user={u} key={u.id} unfollow={props.unfollow} follow={props.follow}/>)}
 			</div>
-			<button onClick={props.setUsers}>Yet</button>
+			<button onClick={setUsers}>Yet</button>
 		</div>
 	);
 }
