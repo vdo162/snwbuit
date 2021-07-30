@@ -1,28 +1,35 @@
+import React from 'react'
 import s from './User.module.css'
 import ava from '../../../img/icon.jpg';
 import * as axios from 'axios';
 
-export const Users = (props) => {
-	let setUsers = () => {
-		if (props.users.length === 0) {
-			axios.get('https://social-network.samuraijs.com/api/1.0/users?count=3')
-				.then((response)=>{
-					props.setUsers(response.data.items)
-				});
-		};
+
+export class Users extends React.Component{
+	componentDidMount(){
+		this.setUsers();
+	}
+	setUsers = () => {
+		axios.get('https://social-network.samuraijs.com/api/1.0/users?count=3')
+			.then((response)=>{
+				this.props.setUsers(response.data.items)
+			});
 	};
-	return (
+	
+	render () {
+		return (
 		<div>
 			<div>
 				{
-					props.users.map(u => <User user={u} key={u.id} unfollow={props.unfollow} follow={props.follow}/>)}
+					this.props.users.map(u => <User user={u} key={u.id} unfollow={this.props.unfollow} follow={this.props.follow}/>)
+				}
 			</div>
-			<button onClick={setUsers}>Yet</button>
+			<button onClick={this.setUsers}>Yet</button>
 		</div>
-	);
+		)
+	}
 }
 
-export const User = (props) => {
+const User = (props) => {
 	return <div className={s.User}>
 		<div className={s.ava}>
 			<img src={props.user.photos.small ? props.user.photos.small : ava} alt='' className={s.img}/>
