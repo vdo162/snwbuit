@@ -13,3 +13,7 @@
 .info {
 	 
 }
+
+.selectedPage {
+	font-weight: bold;
+}

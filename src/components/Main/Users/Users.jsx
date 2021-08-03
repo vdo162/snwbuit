@@ -6,26 +6,71 @@ import * as axios from 'axios';
 
 export class Users extends React.Component{
 	componentDidMount(){
-		this.setUsers();
+		this.setUsers(this.props.currentPage);
 	}
-	setUsers = () => {
-		axios.get('https://social-network.samuraijs.com/api/1.0/users?count=3')
+	
+	setUsers = (pageNumber) => {
+		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
 			.then((response)=>{
-				this.props.setUsers(response.data.items)
+				this.props.setUsers(response.data.items);
+				this.props.setTotalCountUsers(response.data.totalCount);
 			});
 	};
+	
+	onPageGanged = (pageNumber) => {
+		this.props.setCurrentPage(pageNumber);
+		this.setUsers(pageNumber);
+	}
 	
 	render () {
 		return (
 		<div>
-			<div>
-				{
-					this.props.users.map(u => <User user={u} key={u.id} unfollow={this.props.unfollow} follow={this.props.follow}/>)
-				}
-			</div>
-			<button onClick={this.setUsers}>Yet</button>
+			<Paginator onPageGanged={this.onPageGanged} totalCount={this.props.totalUsersCount} pageSize={this.props.pageSize} currentPage = {this.props.currentPage} />
+			<div>{
+				this.props.users.map(u => <User user={u} key={u.id} unfollow={this.props.unfollow} follow={this.props.follow}/>)
+			}</div>
 		</div>
 		)
+	}
+}
+
+class Paginator extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {start: 1, maxButton: 10};
+	}
+	back = () => {
+		let newStart = this.state.start - this.state.maxButton
+		if(newStart < 1) {
+			return;
+		}
+		this.setState({start: newStart});
+	}
+	next = () => {
+		let newStart = this.state.start + this.state.maxButton
+		if(newStart > Math.ceil(this.props.totalCount/this.props.pageSize)) {
+			return;
+		}
+		this.setState({start: newStart});
+	}
+	render() {
+		let pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize);
+		let pages = [];	
+		let start = this.state.start;
+		let end = start + this.state.maxButton - 1;
+		if(end > pagesCount) {
+			end = pagesCount;
+		}
+		for (let i = start; i <= end; i++) {
+			pages.push(i);
+		}
+		return <div>
+			<button onClick={this.back}>{'<'}</button>
+			{pages.map((p) => {
+				return <button onClick={()=> this.props.onPageGanged(p)} className={(p === this.props.currentPage) ? s.selectedPage : ''} key={p}>{p}</button>
+			})}
+			<button onClick={this.next}>{'>'}</button>
+		</div>;
 	}
 }
 
