@@ -1,37 +1,17 @@
 import React from 'react'
 import s from './User.module.css'
 import ava from '../../../img/icon.jpg';
-import * as axios from 'axios';
 
 
-export class Users extends React.Component{
-	componentDidMount(){
-		this.setUsers(this.props.currentPage);
-	}
-	
-	setUsers = (pageNumber) => {
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-			.then((response)=>{
-				this.props.setUsers(response.data.items);
-				this.props.setTotalCountUsers(response.data.totalCount);
-			});
-	};
-	
-	onPageGanged = (pageNumber) => {
-		this.props.setCurrentPage(pageNumber);
-		this.setUsers(pageNumber);
-	}
-	
-	render () {
-		return (
+export const Users = (props) => {
+	return (
 		<div>
-			<Paginator onPageGanged={this.onPageGanged} totalCount={this.props.totalUsersCount} pageSize={this.props.pageSize} currentPage = {this.props.currentPage} />
+			<Paginator onPageGanged={props.onPageGanged} totalCount={props.totalCount} pageSize={props.pageSize} currentPage = {props.currentPage} />
 			<div>{
-				this.props.users.map(u => <User user={u} key={u.id} unfollow={this.props.unfollow} follow={this.props.follow}/>)
+				props.users.map(u => <User user={u} key={u.id} unfollow={props.unfollow} follow={props.follow}/>)
 			}</div>
 		</div>
-		)
-	}
+	);
 }
 
 class Paginator extends React.Component {
