@@ -1,0 +1,102 @@
+.preloader {
+	position: absolute;
+	background: rgba(255, 255, 255, 0.6);
+	height: 100%;
+	width: 100%;
+}
+.wrapper {
+	position: sticky;
+	top: calc(50vh - 50px);
+	display: grid;
+}
+.text {
+	justify-self: center;
+	margin-top: 10px;
+	font-weight: bold;
+	color: #0077ff;
+}
+.squares {
+	align-self: center;
+	justify-self: center;
+	box-shadow: 0 0 3px 0px #555;
+	display: grid;
+	grid-template: 1fr 1fr / 1fr 1fr;
+	animation: squares 2s infinite linear;
+}
+@keyframes squares {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-360deg);
+	}
+}
+
+.square {
+	background: #6fb2ff;
+	width: 25px;
+	height: 25px;
+}
+
+.square1 {
+	animation: square1 .5s infinite;
+}
+@keyframes square1 {
+	from {
+		background: #6fb2ff;
+	}
+	25% {
+		background: #9ecbff;
+	}
+	50% {
+		background: #6fb2ff;
+	}
+}
+
+.square2 {
+	animation: square2 .5s infinite;
+}
+@keyframes square2 {
+	25% {
+		background: #6fb2ff;
+	}
+	50% {
+		background: #9ecbff;
+	}
+	75% {
+		background: #6fb2ff;
+	}
+}
+
+.square3 {
+	animation: square3 .5s infinite;
+}
+@keyframes square3 {
+	50% {
+		background: #6fb2ff;
+	}
+	75% {
+		background: #9ecbff;
+	}
+	to {
+		background: #6fb2ff;
+	}
+}
+
+.square4 {
+	animation: square4 .5s infinite;
+}
+@keyframes square4 {
+	from {
+		background: #9ecbff;
+	}
+	25% {
+		background: #6fb2ff;
+	}
+	75% {
+		background: #6fb2ff;
+	}
+	to {
+		background: #9ecbff;
+	}
+}
