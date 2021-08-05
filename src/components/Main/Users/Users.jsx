@@ -1,4 +1,5 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom';
 import s from './User.module.css'
 import ava from '../../../img/icon.jpg';
 
@@ -57,7 +58,9 @@ class Paginator extends React.Component {
 const User = (props) => {
 	return <div className={s.User}>
 		<div className={s.ava}>
-			<img src={props.user.photos.small ? props.user.photos.small : ava} alt='' className={s.img}/>
+			<NavLink to={`/profile/${props.user.id}`}>
+				<img src={props.user.photos.small ? props.user.photos.small : ava} alt='' className={s.img}/>
+			</NavLink>
 			{props.user.followed ? 
 				<button onClick={() => props.unfollow(props.user.id)}>Unfollow</button> : 
 				<button onClick={() => props.follow(props.user.id)}>Follow</button>}
