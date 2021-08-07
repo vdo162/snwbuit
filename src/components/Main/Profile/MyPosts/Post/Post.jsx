@@ -1,5 +1,5 @@
 import s from './Post.module.css';
-import ava from '../../../../../img/icon.jpg';
+import ava from '../../../../../img/avaCircle.png';
 
 export const Post = (props) => {
   return (

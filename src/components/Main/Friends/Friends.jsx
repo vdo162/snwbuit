@@ -1,12 +1,12 @@
 import s from './Friends.module.css';
-import icon from '../../../img/icon.jpg';
+import ava from '../../../img/avaSquare.png';
 
 const Friends = () => {
   return (
 	<div className={s.friends}>
 		<div className={s.friendsItem}>
 			<div className={s.friendsImg}>
-				<img src={icon} alt="" />
+				<img src={ava} alt="" />
 			</div>
 			<div className={s.friendsInfo}>
 				<div>Petro Puchkov</div>
@@ -15,7 +15,7 @@ const Friends = () => {
 		</div>
 		<div className={s.friendsItem}>
 			<div className={s.friendsImg}>
-				<img src={icon} alt="" />
+				<img src={ava} alt="" />
 			</div>
 			<div className={s.friendsInfo}>
 				<div>

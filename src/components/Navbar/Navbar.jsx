@@ -1,7 +1,7 @@
 import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
 
-export const Navbar = () => {
+const Navbar = () => {
   return (
 	<div className={s.navbar}>
 		<NavLink to='/profile' className={s.item} activeClassName={s.itemActive}>Profile</NavLink>
@@ -11,3 +11,4 @@ export const Navbar = () => {
 	</div>
   );
 }
+export default Navbar;

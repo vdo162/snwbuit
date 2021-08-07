@@ -32,9 +32,11 @@
 		align-self: center;
 		grid-column: 3/4;
 	}
-	.button {
+	.loginButton {
+		align-self: center;
 		padding: 0px;
 		color: #fff;
+		font-size: 80%;
 		border: none;
 		background: #6fb2ff;
 		grid-column: 4/5;

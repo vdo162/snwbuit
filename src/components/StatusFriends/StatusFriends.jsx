@@ -1,8 +1,8 @@
 import s from './StatusFriends.module.css';
-import icon from '../../img/icon.jpg';
+import ava from '../../img/avaCircle.png';
 import search from '../../img/search.png';
 
-export const StatusFriends = () => {
+const StatusFriends = () => {
   return (
 	<div className={s.statusFriends}>
 		<div className={s.statusSearch}>
@@ -13,7 +13,7 @@ export const StatusFriends = () => {
 		</div>
 		<div className={s.statusItems}>
 			<div className={s.statusItem}>
-				<div className={s.statusAva}><img src={icon} alt="" /></div>
+				<div className={s.statusAva}><img src={ava} alt="" /></div>
 				<div className={s.statusName}>
 					Name
 				</div>
@@ -22,7 +22,7 @@ export const StatusFriends = () => {
 				</div>
 			</div>
 			<div className={s.statusItem}>
-				<div className={s.statusAva}><img src={icon} alt="" /></div>
+				<div className={s.statusAva}><img src={ava} alt="" /></div>
 				<div className={s.statusName}>
 					Name
 				</div>
@@ -34,3 +34,4 @@ export const StatusFriends = () => {
 	</div>	
   );
 }
+export default StatusFriends;

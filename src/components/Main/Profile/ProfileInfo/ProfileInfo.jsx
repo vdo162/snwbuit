@@ -1,5 +1,5 @@
 import s from './ProfileInfo.module.css';
-import ava from '../../../../img/icon.jpg';
+import ava from '../../../../img/avaSquare.png';
 
 export const ProfileInfo = (props) => {
 	let foto = props.profile.photos.large ? props.profile.photos.large : props.profile.photos.small

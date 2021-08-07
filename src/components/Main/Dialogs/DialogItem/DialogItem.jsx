@@ -1,5 +1,5 @@
 import s from './../Dialogs.module.css';
-import ava from '../../..//../img/icon.jpg';
+import ava from '../../..//../img/avaCircle.png';
 import {NavLink} from 'react-router-dom';
 
 

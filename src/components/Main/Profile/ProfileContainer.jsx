@@ -8,7 +8,30 @@ import {Preloader} from '../../common/Preloader/Preloader.jsx';
 
 class ProfileContainer extends React.Component {
 	componentDidMount() {
-		let userId = this.props.match.params.id ? this.props.match.params.id : 2;
+		let userId = this.props.match.params.userId;
+		if(!userId) {
+			if (this.props.authId) {
+				userId = this.props.authId;
+			}else {
+				userId = 2;
+			}
+		} 
+		this.props.setIsFetching(true);
+		axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+			.then(response =>{
+				this.props.setUserProfile(response.data);
+				this.props.setIsFetching(false);
+			});	
+	}
+	componentDidUpdate() {
+		let userId = this.props.match.params.userId;
+		if(!userId) {
+			if (this.props.authId) {
+				userId = this.props.authId;
+			}else {
+				userId = 2;
+			}
+		}
 		if(Number(userId) !== this.props.profile.userId) {
 			this.props.setIsFetching(true);
 			axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
@@ -16,7 +39,7 @@ class ProfileContainer extends React.Component {
 					this.props.setUserProfile(response.data);
 					this.props.setIsFetching(false);
 				});
-		}	
+		}
 	}
 	render() {
 		if(this.props.isFetching){
@@ -27,10 +50,11 @@ class ProfileContainer extends React.Component {
 	}
 }
 
-const ProfileContainerWithRouter = withRouter(ProfileContainer);
-
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+	return {
 		profile: state.profilePage.profile,
 		isFetching: state.profilePage.isFetching,
-	});
-export default connect(mapStateToProps, {setIsFetching, setUserProfile})(ProfileContainerWithRouter);
+		authId: state.auth.userId
+	};
+};
+export default connect(mapStateToProps, {setIsFetching, setUserProfile})(withRouter(ProfileContainer));
