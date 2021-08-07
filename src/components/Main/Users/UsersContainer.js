@@ -12,7 +12,9 @@ class UsersContainer extends React.Component{
 	
 	setUsers = (pageNumber) => {
 		this.props.toggleIsFetching(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{
+			withCredentials: true
+		})
 			.then((response)=>{
 				this.props.setUsers(response.data.items);
 				this.props.setTotalCountUsers(response.data.totalCount);
@@ -25,6 +27,33 @@ class UsersContainer extends React.Component{
 		this.setUsers(pageNumber);
 	}
 	
+	follow = (userId) => {
+		axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
+				withCredentials: true,
+				headers: {
+					"API-KEY": "5802d007-bc61-4f84-b4ed-13db98269f64"
+				}
+		})
+			.then((response)=>{
+				if(response.data.resultCode === 0) {
+					this.props.follow(userId);
+				}
+			});	
+	}
+	unfollow = (userId) => {
+		axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
+				withCredentials: true,
+				headers: {
+					"API-KEY": "5802d007-bc61-4f84-b4ed-13db98269f64"
+				}
+		})
+			.then((response)=>{
+				if(response.data.resultCode === 0) {
+					this.props.unfollow(userId);
+				}
+			});	
+	}
+	
 	render () {
 		return (
 			<>
@@ -35,8 +64,8 @@ class UsersContainer extends React.Component{
 					pageSize={this.props.pageSize} 
 					currentPage = {this.props.currentPage} 
 					users={this.props.users} 
-					unfollow={this.props.unfollow} 
-					follow={this.props.follow}/>
+					unfollow={this.unfollow} 
+					follow={this.follow}/>
 			</>
 		)
 	}
