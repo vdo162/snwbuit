@@ -1,15 +1,40 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom';
+import {usersAPI} from '../../../api/api.js';
 import s from './User.module.css'
 import ava from '../../../img/avaSquare.png';
 
 
 export const Users = (props) => {
+	let follow = (userId) => {
+		props.toggleFollowingProgress(userId, true);
+		usersAPI.follow(userId)
+			.then((data)=>{
+				if(data.resultCode === 0) {
+					props.follow(userId);
+				}
+				props.toggleFollowingProgress(userId, false);
+			});	
+	}
+	
+	let unfollow = (userId) => {
+		props.toggleFollowingProgress(userId, true);
+		usersAPI.unfollow(userId)
+			.then((data)=>{
+				if(data.resultCode === 0) {
+					props.unfollow(userId);
+				}
+				props.toggleFollowingProgress(userId, false);
+			});	
+	}
+
 	return (
 		<div>
 			<Paginator onPageGanged={props.onPageGanged} totalCount={props.totalCount} pageSize={props.pageSize} currentPage = {props.currentPage} />
 			<div>{
-				props.users.map(u => <User user={u} key={u.id} unfollow={props.unfollow} follow={props.follow}/>)
+				props.users.map(u => {
+					return <User user={u} key={u.id} unfollow={unfollow} follow={follow} isFollowing={props.followingInProgress.some(id => id === u.id)}/>
+				})
 			}</div>
 		</div>
 	);
@@ -62,8 +87,8 @@ const User = (props) => {
 				<img src={props.user.photos.small ? props.user.photos.small : ava} alt='' className={s.img}/>
 			</NavLink>
 			{props.user.followed ? 
-				<button onClick={() => props.unfollow(props.user.id)}>Unfollow</button> : 
-				<button onClick={() => props.follow(props.user.id)}>Follow</button>}
+				<button onClick={() => props.unfollow(props.user.id)} disabled={props.isFollowing}>Unfollow</button> : 
+				<button onClick={() => props.follow(props.user.id)} disabled={props.isFollowing}>Follow</button>}
 			
 		</div>
 		<div className={s.info}>
