@@ -1,29 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import {follow, unfollow, setUsers, setTotalCountUsers, setCurrentPage, toggleIsFetching, toggleFollowingProgress} from '../../../redux/users-reducer.js';
+import {follow, unfollow, setCurrentPage, getUsers} from '../../../redux/users-reducer.js';
 import {Users} from './Users.jsx';
 import {Preloader} from '../../common/Preloader/Preloader.jsx';
-import {usersAPI} from '../../../api/api.js';
 
 class UsersContainer extends React.Component{
 	componentDidMount(){
-		this.props.toggleIsFetching(true);
-		usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-			.then((data)=>{
-				this.props.setUsers(data.items);
-				this.props.setTotalCountUsers(data.totalCount);
-				this.props.toggleIsFetching(false);
-			});
+		this.props.getUsers(this.props.currentPage, this.props.pageSize);
 	};
 	
 	onPageGanged = (pageNumber) => {
 		this.props.setCurrentPage(pageNumber);
-		this.props.toggleIsFetching(true);
-		usersAPI.getUsers(pageNumber, this.props.pageSize)
-			.then((data)=>{
-				this.props.toggleIsFetching(false);
-				this.props.setUsers(data.items);
-			});
+		this.props.getUsers(pageNumber, this.props.pageSize);
 	};
 	
 	render () {
@@ -53,9 +41,8 @@ const mapStateToProps = (state) => {
 		totalUsersCount: state.usersPage.totalUsersCount,
 		currentPage: state.usersPage.currentPage,
 		isFetching: state.usersPage.isFetching,
-		followingInProgress: state.usersPage.followingInProgress,
-		toggleFollowingProgress: state.usersPage.toggleFollowingProgress
+		followingInProgress: state.usersPage.followingInProgress
 	};
 }
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setTotalCountUsers, setCurrentPage, toggleIsFetching, toggleFollowingProgress})(UsersContainer);
+export default connect(mapStateToProps, {follow, unfollow, setCurrentPage, getUsers})(UsersContainer);
