@@ -1,8 +1,7 @@
 import React from 'react';
-import * as axios from 'axios';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {setUserProfile, setIsFetching} from '../../../redux/profile-reducer.js';
+import {getUserProfile} from '../../../redux/profile-reducer.js';
 import {Profile} from './Profile.jsx';
 import {Preloader} from '../../common/Preloader/Preloader.jsx';
 
@@ -16,12 +15,7 @@ class ProfileContainer extends React.Component {
 				userId = 2;
 			}
 		} 
-		this.props.setIsFetching(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-			.then(response =>{
-				this.props.setUserProfile(response.data);
-				this.props.setIsFetching(false);
-			});	
+		this.props.getUserProfile(userId);
 	}
 	componentDidUpdate() {
 		let userId = this.props.match.params.userId;
@@ -33,12 +27,7 @@ class ProfileContainer extends React.Component {
 			}
 		}
 		if(Number(userId) !== this.props.profile.userId) {
-			this.props.setIsFetching(true);
-			axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-				.then(response =>{
-					this.props.setUserProfile(response.data);
-					this.props.setIsFetching(false);
-				});
+			this.props.getUserProfile(userId);
 		}
 	}
 	render() {
@@ -57,4 +46,4 @@ const mapStateToProps = (state) => {
 		authId: state.auth.userId
 	};
 };
-export default connect(mapStateToProps, {setIsFetching, setUserProfile})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {getUserProfile})(withRouter(ProfileContainer));

@@ -1,3 +1,5 @@
+import {usersAPI} from '../api/api.js';
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'; 
 const SET_USER_PROFILE = 'SET-USER-PROFILE'; 
@@ -57,3 +59,12 @@ export const updateNewPostTextActionCreator = (newText) =>
 ({type: UPDATE_NEW_POST_TEXT, newText: newText});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
+
+export const getUserProfile = (userId) => (dispatch) => {
+		dispatch(setIsFetching(true));
+		usersAPI.getProfile(userId)
+			.then(response =>{
+				dispatch(setUserProfile(response.data));
+				dispatch(setIsFetching(false));
+			});
+}
