@@ -1,5 +1,11 @@
+.noFriends {
+	padding: 8px 0 0 13px;
+	font-size: 85%;
+	color: #666666;
+}
 .statusFriends {
 	display: none;
+	position: relative;
 }
 @media(min-width: 768px) {
 	.statusFriends {
@@ -59,19 +65,14 @@
 			}
 			.status{
 				align-self: center;
-				width: 5px;
-				border-radius: 5px;
-				padding: 2px;
+				width: 2px;
+				height: 2px;
+				border-radius: 4px;
+				background:; 
 			}
 			.status.online {
-				background: #6fb2ff;
+				border: 3px solid #6fb2ff;
 			}
 			.status.offline {
-				background: #bbb;
+				border: 3px solid #bbb;
 			}
-				.status div{
-					background: #edeef0;
-					width: 5px;
-					height: 5px;
-					border-radius: 3px;
-				}

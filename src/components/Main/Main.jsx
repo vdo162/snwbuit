@@ -1,8 +1,8 @@
 import s from './Main.module.css';
 import Profile from './Profile/ProfileContainer.jsx';
 import Dialogs from './Dialogs/DialogsContainer.js';
-import Users from './Users/UsersContainer.js';
-import Friends from './Friends/Friends.jsx';
+import Users from './Users/UsersContainer.jsx';
+import Friends from './Friends/FriendsContainer.jsx';
 import LoginPage from './Login/Login.jsx';
 import {Route} from 'react-router-dom';
 

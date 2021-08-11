@@ -1,16 +1,17 @@
 import {usersAPI} from '../api/api.js';
+import {getFriends} from './friends-reducer.js';
 
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
 export const SET_USERS = 'SET-USERS';
 export const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 export const SET_TOTAL_COUNT_USERS = 'SET-TOTAL-COUNT-USERS';
-export const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+export const USERS_TOGGLE_IS_FETCHING = 'USERS-TOGGLE-IS-FETCHING';
 export const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS';
 
 const initialState = {
 	users: [],
-	pageSize: 10,
+	pageSize: 100,
 	totalUsersCount: 0,
 	currentPage: 1,
 	isFetching: true,
@@ -54,7 +55,7 @@ export const usersReducer = (state = initialState, action) => {
 				...state,
 				totalUsersCount: action.count
 			};
-		case TOGGLE_IS_FETCHING:
+		case USERS_TOGGLE_IS_FETCHING:
 			return {
 				...state,
 				isFetching: action.isFetching
@@ -78,7 +79,7 @@ export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalCountUsers = (totalUsersCount) => ({type: SET_TOTAL_COUNT_USERS, count: totalUsersCount});
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleIsFetching = (isFetching) => ({type: USERS_TOGGLE_IS_FETCHING, isFetching});
 export const toggleFollowingProgress = (userId, isFetching) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, userId, isFetching});
 
 export const getUsers = (currentPage, pageSize) => (dispatch) => {
@@ -96,6 +97,7 @@ export const follow = (userId) => (dispatch) => {
 			.then((data)=>{
 				if(data.resultCode === 0) {
 					dispatch(followSuccess(userId));
+					dispatch(getFriends());
 				}
 				dispatch(toggleFollowingProgress(userId, false));
 			});
@@ -106,6 +108,7 @@ export const unfollow = (userId) => (dispatch) => {
 			.then((data)=>{
 				if(data.resultCode === 0) {
 					dispatch(unfollowSuccess(userId));
+					dispatch(getFriends());
 				}
 				dispatch(toggleFollowingProgress(userId, false));
 			});

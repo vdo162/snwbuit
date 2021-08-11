@@ -1,6 +1,7 @@
 .preloader {
 	position: absolute;
 	background: rgba(255, 255, 255, 0.6);
+	z-index: 999;
 	height: 100%;
 	width: 100%;
 }
