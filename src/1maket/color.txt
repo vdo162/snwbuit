@@ -6,3 +6,5 @@
 серый #edeef0
 50% серый #f9f9f9
 150% серый #bbbbbb
+
+border: 1px red solid;

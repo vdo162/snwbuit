@@ -1,3 +1,4 @@
+import * as fakeInstance from './fakeServer.js';
 import * as axios from 'axios';
 
 const instance = axios.create({
@@ -37,6 +38,23 @@ export const usersAPI = {
 export const authAPI = {
 	me() {
 		return instance.get(`auth/me`)
+			.then(response => response.data);
+	}
+};
+
+export const dialogsAPI = {
+	getDialogs() {
+		return fakeInstance.get(`dialogs`)
+			.then(response => response.data);
+	},
+	
+	getAnswer(dialogId) {
+		return fakeInstance.get(`dialogs/{dialogId}`)
+			.then(response => response.data);
+	},
+	
+	sendMessage(messageText, dialogId) {
+		return fakeInstance.put(`dialogs/{dialogId}`, {messageText})
 			.then(response => response.data);
 	}
 };

@@ -7,7 +7,12 @@ import {Preloader} from '../../common/Preloader/Preloader.jsx';
 
 class FriendsContainer extends React.Component{
 	componentDidMount(){
-		if(!this.props.friends.length) {
+		if(this.props.isAuth && this.props.friends === null) {
+			this.props.getFriends(this.props.currentPage, this.props.pageSize);
+		}
+	};
+	componentDidUpdate(){
+		if(this.props.isAuth && this.props.friends === null) {
 			this.props.getFriends(this.props.currentPage, this.props.pageSize);
 		}
 	};
@@ -20,7 +25,7 @@ class FriendsContainer extends React.Component{
 	render () {
 		return (
 			<>
-				{this.props.isFetching ? <Preloader/> : null}
+				{this.props.isFetching && <Preloader/>}
 				<Friends 
 					onPageGanged={this.onPageGanged} 
 					totalCount={this.props.totalFriendsCount} 

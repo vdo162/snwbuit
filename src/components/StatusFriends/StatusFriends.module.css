@@ -65,14 +65,14 @@
 			}
 			.status{
 				align-self: center;
-				width: 2px;
-				height: 2px;
-				border-radius: 4px;
+				width: 5px;
+				height: 5px;
+				border-radius: 10px;
 				background:; 
 			}
 			.status.online {
-				border: 3px solid #6fb2ff;
+				border: 2px solid #6fb2ff;
 			}
 			.status.offline {
-				border: 3px solid #bbb;
+				border: 2px solid #bbb;
 			}

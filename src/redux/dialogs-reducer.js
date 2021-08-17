@@ -1,34 +1,62 @@
-const SEND_MESSAGE = 'SEND-MESSAGE'; 
+import {dialogsAPI} from '../api/api.js'
+
+const SET_DIALOGS = 'SET-DIALOGS'; 
+const ADD_MESSAGE = 'ADD-MESSAGE'; 
+const ADD_ANSWER = 'ADD-ANSWER'; 
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'; 
+export const DIALOGS_TOGGLE_IS_FETCHING = 'DIALOGS-TOGGLE-IS-FETCHING';
 
 let initialState = {
-	messages: [
-		{id: 1, message: 'Hi'},
-		{id: 2, message: 'Yo'},
-		{id: 3, message: 'Hey'},
-		{id: 4, message: 'Buy'}
-	],
-	newMessageText: 'New message',
-	
-	dialogs: [
-		{id: 1, name: 'Dim'},
-		{id: 2, name: 'Andr'},
-		{id: 3, name: 'Kat'},
-		{id: 4, name: 'Dim'},
-		{id: 5, name: 'Andr'},
-		{id: 6, name: 'Kat'}
-	]
+	newMessageText: '',
+	dialogs: null,
+	isFetching: true
 };
 
 export const dialogsReducer = (state = initialState, action) => {
 	switch(action.type) {
-		case SEND_MESSAGE:
+		case SET_DIALOGS:
 			return {
 				...state,
-				messages: [
-					...state.messages,
-					{id: 5, message: state.newMessageText}
-				],
+				dialogs: action.dialogs
+			};
+		case ADD_MESSAGE:
+			return {
+				...state,
+				dialogs: state.dialogs.map(d => {
+					if (d.id === action.dialogId) {
+						let newId = d.messages[d.messages.length - 1].id + 1;
+						const date = new Date();
+						const [hour, minutes] = [date.getHours(), date.getMinutes()];
+						let time = `${hour}:${minutes > 9 ? minutes : '0' + minutes}`;
+						return {...d,
+							messages: [
+								...d.messages,
+								{id: newId, messageText: state.newMessageText, isOwnerAuth: true, date: time}
+							]
+						};
+					}
+					return d;
+				}),
+				newMessageText: ''
+			};
+		case ADD_ANSWER:
+			return {
+				...state,
+				dialogs: state.dialogs.map(d => {
+					if (d.id === action.dialogId) {
+						let newId = d.messages[d.messages.length - 1].id + 1;
+						const date = new Date();
+						const [hour, minutes] = [date.getHours(), date.getMinutes()];
+						let time = `${hour}:${minutes > 9 ? minutes : '0' + minutes}`;
+						return {...d,
+							messages: [
+								...d.messages,
+								{id: newId, messageText: action.answer, isOwnerAuth: false, date: time}
+							]
+						};
+					}
+					return d;
+				}),
 				newMessageText: ''
 			};
 		case UPDATE_NEW_MESSAGE_TEXT:
@@ -36,11 +64,44 @@ export const dialogsReducer = (state = initialState, action) => {
 				...state,
 				newMessageText: action.newText
 			};
+		case DIALOGS_TOGGLE_IS_FETCHING:
+			return {
+				...state,
+				isFetching: action.isFetching
+			};
 		default:
 			return state;	
 	};		
 };
 
-export const sendMessageCreator = () => ({type: SEND_MESSAGE}); 
-export const updateNewMessageTextCreator = (newText) => 
-({type: UPDATE_NEW_MESSAGE_TEXT, newText: newText});
+export const setDialogs = (dialogs) => ({type: SET_DIALOGS, dialogs});
+export const addMessage = (dialogId) => ({type: ADD_MESSAGE, dialogId}); 
+export const addAnswer = (dialogId, answer) => ({type: ADD_ANSWER, dialogId, answer}); 
+export const updateNewMessageText = (newText) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: newText});
+export const toggleIsFetching = (isFetching) => ({type: DIALOGS_TOGGLE_IS_FETCHING, isFetching});
+
+export const getDialogs = () => (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	dialogsAPI.getDialogs()
+		.then(dialogs => {
+			dispatch(setDialogs(dialogs));
+			dispatch(toggleIsFetching(false));
+		});
+};
+export const sendMessage = (messageText, dialogId) => (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	dialogsAPI.sendMessage(messageText, dialogId)
+		.then(data => {
+			if(data.resultCode === 0){
+				dispatch(addMessage(dialogId));
+				dispatch(toggleIsFetching(false));
+				dispatch(getAnswer(dialogId));
+			}
+		});	
+};
+const getAnswer = (dialogId) => (dispatch) => {
+	dialogsAPI.getAnswer(dialogId)
+		.then(data => {
+			dispatch(addAnswer(dialogId, data.answer));
+		});
+}

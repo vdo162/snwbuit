@@ -5,10 +5,20 @@ import {StatusFriends} from './StatusFriends.jsx';
 
 class StatusFriendsContainer extends React.Component{
 	componentDidMount(){
-		this.props.getFriends();
+		if(this.props.isAuth && this.props.friends === null) {
+			this.props.getFriends();
+		}
+	};
+	componentDidUpdate(){
+		if(this.props.isAuth && this.props.friends === null) {
+			this.props.getFriends();
+		}
 	};
 	
 	render () {
+		if(!this.props.isAuth) {
+			return null;
+		}
 		return <StatusFriends 
 			friends={this.props.friends} 
 			isFetching={this.props.isFetching} 
@@ -19,6 +29,7 @@ class StatusFriendsContainer extends React.Component{
 
 const mapStateToProps = (state) => {
 	return {
+		isAuth: state.auth.isAuth,
 		friends: state.friendsPage.friends,
 		isFetching: state.friendsPage.isFetching,
 		searchText: state.friendsPage.searchText		

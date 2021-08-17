@@ -40,12 +40,13 @@ export const StatusFriends = (props) => {
 						value={props.searchText}/>
 				</div>
 			</div>
-			{!props.friends.length && <div className={s.noFriends}>No friends...</div>}
-			<div className={s.statusItems}>
-				{searchedFriends.map(f => {
-					return <StatusFriend friend={f} key={f.id}/>
-				})}
-			</div>
+			{(props.friends === null || !props.friends.length) 
+				? <div className={s.noFriends}>No friends...</div>
+				: <div className={s.statusItems}>
+					{searchedFriends.map(f => {
+						return <StatusFriend friend={f} key={f.id}/>
+					})}
+				</div>}
 		</div>
 	)
 }

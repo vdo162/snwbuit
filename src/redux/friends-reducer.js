@@ -9,7 +9,7 @@ export const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS';
 export const NEW_SEARCH_TEXT = 'NEW-SEARCH-TEXT';
 
 const initialState = {
-	friends: [],
+	friends: null,
 	pageSize: 100,
 	totalFriendsCount: 0,
 	currentPage: 1,

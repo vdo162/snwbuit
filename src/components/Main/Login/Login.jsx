@@ -1,7 +1,6 @@
 import s from './Login.module.css';
 
 const Login = () => {
-	
   return (
 	<div className={s.login}>
 		Write your login and password

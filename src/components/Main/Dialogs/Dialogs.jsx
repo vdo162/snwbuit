@@ -1,35 +1,39 @@
-import {Redirect} from 'react-router-dom';
+import {Preloader} from '../../common/Preloader/Preloader.jsx';
 import s from './Dialogs.module.css';
-import {DialogItem} from './DialogItem/DialogItem.jsx';
-import {Message} from './Message/Message.jsx';
+import {DialogsItem} from './DialogsItem/DialogsItem.jsx';
+import {Dialog} from './Dialog/Dialog.jsx';
+
+const DialogsList = (props) => {
+	return (
+			<div>
+				{(props.dialogsPage.dialogs === null || props.dialogsPage.dialogs.length === 0)
+					? <div className={s.noDialogs}>No dialogs...</div>
+					: props.dialogsPage.dialogs.map(d => 
+					<DialogsItem ava={d.ava} name={d.name} id={d.id} lastMessage={d.messages[d.messages.length-1]} key={d.id}/>)}
+			</div>
+		);
+}
 
 export const Dialogs = (props) => {
-	let state = props.dialogsPage;
-	let dialogdsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
-	let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id}/>);	
-	
-	let onSendMessageClick = () => {
-		props.sendMessage();
-	}
-	
+	let onSendMessageClick = (e, dialogId) => {
+		props.sendMessage(e.target.value, dialogId);
+	};
 	let onNewMessageChange = (e) => {
 		props.updateNewMessageText(e.target.value);
-	}
-	if(!props.isAuth) {
-		return <Redirect to="/login"/>
-	}
-	return (
-		<div className={s.dialogs}>
-			<div className={s.dialogsItems}>
-				{dialogdsElements}
-			</div>
-			<div className={s.messages}>
-				<div>{messagesElements}</div>
-				<div>
-					<div><textarea onChange={onNewMessageChange} value={state.newMessageText} /></div>
-					<div><button onClick={onSendMessageClick}>Send</button></div>
-				</div>
-			</div>
-		</div>
-	);
+	};
+	
+	if (props.isFetching) {
+		return <Preloader/>;
+	} else if(!props.match.params.userId) {
+		return <DialogsList {...props}/>;
+	} else {
+		let dialog = props.dialogsPage.dialogs.find(d => 
+			+d.id === +props.match.params.userId);
+		if(!dialog) return <div>No such dialogs :(</div>;
+		return <Dialog 
+			dialog={dialog}
+			onSendMessageClick={onSendMessageClick} 
+			onNewMessageChange={onNewMessageChange} 
+			newMessageText={props.dialogsPage.newMessageText}/>;
+	};	
 }

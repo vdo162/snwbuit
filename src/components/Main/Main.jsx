@@ -9,7 +9,7 @@ import {Route} from 'react-router-dom';
 const Main = (props) => {
   return (
 	<div className={s.main}>
-		<Route path='/dialogs' render={() => <Dialogs />}/>
+		<Route path='/dialogs/:userId?' render={() => <Dialogs />}/>
 		<Route path='/users' render={() => <Users />}/>
 		<Route path='/friends' render={() => <Friends/>}/>
 		<Route path='/profile/:userId?' render={() => <Profile />}/>

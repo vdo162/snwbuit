@@ -1,23 +1,5 @@
-.dialogs {
-	display: grid;
-	grid-template-columns: 1fr 4fr;
+.noDialogs {
+	padding: 8px 0 0 13px;
+	font-size: 85%;
+	color: #666666;
 }
-	.dialogsItems {
-	}
-		.dialog img{
-			width: 20px;
-			height: 20px;
-			border-radius: 10px;
-		}
-		.dialog a{
-			color: black;
-		}
-			.active {
-				color: blue;
-			}
-
-	.messages {
-	}
-		.message {
-			
-		}
