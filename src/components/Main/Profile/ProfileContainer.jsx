@@ -1,4 +1,5 @@
 import React from 'react';
+import {compose} from 'redux';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Preloader} from '../../common/Preloader/Preloader.jsx';
@@ -48,6 +49,8 @@ const mapStateToProps = (state) => {
 		authId: state.auth.userId
 	};
 };
-export default withAuthRedirect(connect(mapStateToProps, {getUserProfile})
-	(withRouter(
-	ProfileContainer)));
+export default compose (
+	withAuthRedirect, 
+	connect(mapStateToProps, {getUserProfile}), 
+	withRouter
+)(ProfileContainer);

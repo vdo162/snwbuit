@@ -1,4 +1,5 @@
 import {useEffect} from 'react';
+import {compose} from 'redux';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Preloader} from '../../common/Preloader/Preloader.jsx';
@@ -30,4 +31,8 @@ const mapStateToProps = (state) => {
 	};
 }
 
-export default withAuthRedirect(withRouter(connect(mapStateToProps, {getDialogs, updateNewMessageText,sendMessage})(DialogsContainer)));
+export default compose(
+	withAuthRedirect, 
+	connect(mapStateToProps, {getDialogs, updateNewMessageText,sendMessage}), 
+	withRouter
+)(DialogsContainer);

@@ -1,4 +1,5 @@
 import React from 'react'
+import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {Preloader} from '../../common/Preloader/Preloader.jsx';
 import {withAuthRedirect} from '../../common/withAuthRedirect/withAuthRedirect.jsx';
@@ -52,4 +53,7 @@ const mapStateToProps = (state) => {
 	};
 }
 
-export default withAuthRedirect(connect(mapStateToProps, {unfollow, setCurrentPage, getFriends})(FriendsContainer));
+export default compose(
+	withAuthRedirect, 
+	connect(mapStateToProps, {unfollow, setCurrentPage, getFriends})
+)(FriendsContainer);
