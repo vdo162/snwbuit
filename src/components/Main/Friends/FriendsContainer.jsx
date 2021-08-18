@@ -1,9 +1,9 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {Preloader} from '../../common/Preloader/Preloader.jsx';
+import {withAuthRedirect} from '../../common/withAuthRedirect/withAuthRedirect.jsx';
 import {unfollow, setCurrentPage, getFriends} from '../../../redux/friends-reducer.js';
 import {Friends} from './Friends.jsx';
-import {Preloader} from '../../common/Preloader/Preloader.jsx';
 
 class FriendsContainer extends React.Component{
 	componentDidMount(){
@@ -40,14 +40,6 @@ class FriendsContainer extends React.Component{
 	}
 }
 
-const FriendsContainerWithRedirect = (props) => {
-	if(!props.isAuth) {
-		return <Redirect to="/login"/>
-	}
-	return <FriendsContainer {...props}/>;
-}
-
-
 const mapStateToProps = (state) => {
 	return {
 		friends: state.friendsPage.friends,
@@ -60,4 +52,4 @@ const mapStateToProps = (state) => {
 	};
 }
 
-export default connect(mapStateToProps, {unfollow, setCurrentPage, getFriends})(FriendsContainerWithRedirect);
+export default withAuthRedirect(connect(mapStateToProps, {unfollow, setCurrentPage, getFriends})(FriendsContainer));

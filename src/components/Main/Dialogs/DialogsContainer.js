@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
 import {Preloader} from '../../common/Preloader/Preloader.jsx';
+import {withAuthRedirect} from '../../common/withAuthRedirect/withAuthRedirect.jsx';
 import {Dialogs} from './Dialogs.jsx';
 import {getDialogs, updateNewMessageText, sendMessage} from '../../../redux/dialogs-reducer.js';
 
@@ -14,10 +14,6 @@ const DialogsContainer = (props) => {
 			getDialogs();
 		}
 	}, [isAuth, getDialogs]);
-	
-	if(!props.isAuth) {
-		return <Redirect to="/login"/>
-	}
 	return (
 		<>
 			{props.isFetching && <Preloader/>}
@@ -34,4 +30,4 @@ const mapStateToProps = (state) => {
 	};
 }
 
-export default withRouter(connect(mapStateToProps, {getDialogs, updateNewMessageText,sendMessage})(DialogsContainer));
+export default withAuthRedirect(withRouter(connect(mapStateToProps, {getDialogs, updateNewMessageText,sendMessage})(DialogsContainer)));
