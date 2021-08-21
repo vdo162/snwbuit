@@ -1,5 +1,5 @@
 import {authAPI} from '../api/api.js';
-import {usersAPI} from '../api/api.js';
+import {profileAPI} from '../api/api.js';
 
 const SET_USER_DATA = 'SET-USER-DATA';
 const SET_AUTH_PROFILE = 'SET-AUTH-PROFILE';
@@ -48,7 +48,7 @@ export const getAuthUserData = () => (dispatch) => {
 			});
 }
 const getAuthProfile = (userId) => (dispatch) => {
-		usersAPI.getProfile(userId)
+		profileAPI.getProfile(userId)
 			.then(data => {
 				dispatch(setAuthProfile(data.data));
 			});

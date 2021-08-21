@@ -17,7 +17,7 @@ const User = (props) => {
 					{props.user.name}
 				</div>
 				<div>
-					Status: {props.user.status ? props.user.status : 'Too lazy to write a status'}
+					Status: {props.user.status ? props.user.status : 'No status'}
 				</div>
 			</div>
 			<div>

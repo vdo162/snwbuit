@@ -9,6 +9,13 @@ const instance = axios.create({
 	}
 });
 
+export const authAPI = {
+	me() {
+		return instance.get(`auth/me`)
+			.then(response => response.data);
+	}
+};
+
 export const usersAPI = {
 	getUsers(currentPage, pageSize){
 		return instance.get(`users?page=${currentPage}&count=${pageSize}`)
@@ -25,19 +32,23 @@ export const usersAPI = {
 			.then(response => response.data);
 	},
 	
-	getProfile(userId){
-		return instance.get(`profile/${userId}`)
-	},
-	
 	getFriends(currentPage, pageSize){
 		return instance.get(`users?page=${currentPage}&count=${pageSize}&friend=true`)
 			.then(response => response.data);
 	}
 };
 
-export const authAPI = {
-	me() {
-		return instance.get(`auth/me`)
+export const profileAPI = {
+	getProfile(userId){
+		return instance.get(`profile/${userId}`);
+	},
+	
+	getStatus(userId){
+		return instance.get(`profile/status/${userId}`);
+	},
+	
+	updateStatus(status){
+		return instance.put(`profile/status`, {status: status})
 			.then(response => response.data);
 	}
 };

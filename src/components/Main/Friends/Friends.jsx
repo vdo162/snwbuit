@@ -17,7 +17,7 @@ const Friend = (props) => {
 					{props.friend.name}
 				</div>
 				<div>
-					Status: {props.friend.status ? props.friend.status : 'Too lazy to write a status'}
+					Status: {props.friend.status ? props.friend.status : 'No status'}
 				</div>
 			</div>
 			<div>

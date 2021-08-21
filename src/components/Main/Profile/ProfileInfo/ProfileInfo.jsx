@@ -7,8 +7,11 @@ export const ProfileInfo = (props) => {
 	return (
 		<div>
 			<div>
-				<img src={foto ? foto : ava} alt=''/>
-				<ProfileStatus status={'Hello my friends'}/>
+				{/*<img src={foto ? foto : ava} alt=''/>*/}
+				<ProfileStatus updateStatus={props.updateStatus} 
+					status={props.status}
+					authId={props.authId}
+					userId={props.profile.userId}/>
 			</div>
 			
 			<div className={s.descriptionBlock}>
