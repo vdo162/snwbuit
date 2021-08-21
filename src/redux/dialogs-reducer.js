@@ -3,11 +3,9 @@ import {dialogsAPI} from '../api/api.js'
 const SET_DIALOGS = 'SET-DIALOGS'; 
 const ADD_MESSAGE = 'ADD-MESSAGE'; 
 const ADD_ANSWER = 'ADD-ANSWER'; 
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'; 
 export const DIALOGS_TOGGLE_IS_FETCHING = 'DIALOGS-TOGGLE-IS-FETCHING';
 
 let initialState = {
-	newMessageText: '',
 	dialogs: null,
 	isFetching: true
 };
@@ -31,13 +29,12 @@ export const dialogsReducer = (state = initialState, action) => {
 						return {...d,
 							messages: [
 								...d.messages,
-								{id: newId, messageText: state.newMessageText, isOwnerAuth: true, date: time}
+								{id: newId, messageText: action.messageText, isOwnerAuth: true, date: time}
 							]
 						};
 					}
 					return d;
-				}),
-				newMessageText: ''
+				})
 			};
 		case ADD_ANSWER:
 			return {
@@ -56,13 +53,7 @@ export const dialogsReducer = (state = initialState, action) => {
 						};
 					}
 					return d;
-				}),
-				newMessageText: ''
-			};
-		case UPDATE_NEW_MESSAGE_TEXT:
-			return {
-				...state,
-				newMessageText: action.newText
+				})
 			};
 		case DIALOGS_TOGGLE_IS_FETCHING:
 			return {
@@ -75,9 +66,8 @@ export const dialogsReducer = (state = initialState, action) => {
 };
 
 export const setDialogs = (dialogs) => ({type: SET_DIALOGS, dialogs});
-export const addMessage = (dialogId) => ({type: ADD_MESSAGE, dialogId}); 
+export const addMessage = (messageText, dialogId) => ({type: ADD_MESSAGE, messageText, dialogId}); 
 export const addAnswer = (dialogId, answer) => ({type: ADD_ANSWER, dialogId, answer}); 
-export const updateNewMessageText = (newText) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: newText});
 export const toggleIsFetching = (isFetching) => ({type: DIALOGS_TOGGLE_IS_FETCHING, isFetching});
 
 export const getDialogs = () => (dispatch) => {
@@ -93,7 +83,7 @@ export const sendMessage = (messageText, dialogId) => (dispatch) => {
 	dialogsAPI.sendMessage(messageText, dialogId)
 		.then(data => {
 			if(data.resultCode === 0){
-				dispatch(addMessage(dialogId));
+				dispatch(addMessage(messageText, dialogId));
 				dispatch(toggleIsFetching(false));
 				dispatch(getAnswer(dialogId));
 			}

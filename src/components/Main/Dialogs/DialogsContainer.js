@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {Preloader} from '../../common/Preloader/Preloader.jsx';
 import {withAuthRedirect} from '../../common/withAuthRedirect/withAuthRedirect.jsx';
 import {Dialogs} from './Dialogs.jsx';
-import {getDialogs, updateNewMessageText, sendMessage} from '../../../redux/dialogs-reducer.js';
+import {getDialogs, sendMessage} from '../../../redux/dialogs-reducer.js';
 
 const DialogsContainer = (props) => {
 	const isAuth = props.isAuth;
@@ -33,6 +33,6 @@ const mapStateToProps = (state) => {
 
 export default compose(
 	withAuthRedirect, 
-	connect(mapStateToProps, {getDialogs, updateNewMessageText,sendMessage}), 
+	connect(mapStateToProps, {getDialogs,sendMessage}), 
 	withRouter
 )(DialogsContainer);

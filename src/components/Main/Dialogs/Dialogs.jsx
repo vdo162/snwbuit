@@ -15,11 +15,8 @@ const DialogsList = (props) => {
 }
 
 export const Dialogs = (props) => {
-	let onSendMessageClick = (e, dialogId) => {
-		props.sendMessage(e.target.value, dialogId);
-	};
-	let onNewMessageChange = (e) => {
-		props.updateNewMessageText(e.target.value);
+	let onSendNewMessage = (newMessageText, dialogId) => {
+		props.sendMessage(newMessageText, dialogId);
 	};
 	
 	if (props.isFetching) {
@@ -32,8 +29,6 @@ export const Dialogs = (props) => {
 		if(!dialog) return <div>No such dialogs :(</div>;
 		return <Dialog 
 			dialog={dialog}
-			onSendMessageClick={onSendMessageClick} 
-			onNewMessageChange={onNewMessageChange} 
-			newMessageText={props.dialogsPage.newMessageText}/>;
+			onSendNewMessage={onSendNewMessage} />;
 	};	
 }

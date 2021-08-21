@@ -1,7 +1,6 @@
 import {profileAPI} from '../api/api.js';
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'; 
 const SET_USER_PROFILE = 'SET-USER-PROFILE'; 
 const SET_STATUS = 'SET-STATUS'; 
 const SET_IS_FETCHING = 'SET-IS-FETCHING'; 
@@ -13,7 +12,6 @@ let initialState = {
 		{id: 3, message: "Bla", likesCount: 1},
 		{id: 4, message: "Data", likesCount: 22}
 	] ,
-	newPostText: 'New post',
 	profile: {
 		userId: null
 	},
@@ -30,16 +28,10 @@ export const profileReducer = (state = initialState, action) => {
 					...state.posts,
 					{
 						id: 5, 
-						message: state.newPostText, 
+						message: action.newPostText, 
 						likesCount: 0
 					}
-				],
-				newPostText: ''
-			};
-		case UPDATE_NEW_POST_TEXT:
-			return {
-				...state,
-				newPostText: action.newText
+				]
 			};
 		case SET_USER_PROFILE:
 			return {
@@ -61,9 +53,7 @@ export const profileReducer = (state = initialState, action) => {
 	};	
 };
 
-export const addPostActionCreator = () => ({type: ADD_POST}); 
-export const updateNewPostTextActionCreator = (newText) => 
-({type: UPDATE_NEW_POST_TEXT, newText: newText});
+export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText}); 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});

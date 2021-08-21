@@ -10,7 +10,7 @@ const Login = (props) => {
 		<Form 
 			onSubmit={onSubmit}
 			render={({ handleSubmit, form, submitting, pristine, values, ...props }) =>{
-				debugger
+				
 				return (
 					<form name='auth' className={s.form} onSubmit={handleSubmit}>
 						Write your login and password

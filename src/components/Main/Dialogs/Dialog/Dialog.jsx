@@ -1,5 +1,25 @@
+import {Form, Field } from "react-final-form";
 import s from './Dialog.module.css';
 import ava from '../../../../img/avaSquare.png';
+
+const AddMessageForm = (props) => {
+	return (
+		<Form onSubmit={props.onSubmit} 
+			render={({handleSubmit}) => {
+				return (
+					<form onSubmit={handleSubmit} className={s.messageCreater}>
+						<Field component='textarea'  name='newMessageText'
+							className={s.textarea} 
+							placeholder='Your message...'/>
+						<button className={s.button}>
+							>
+						</button>
+					</form>
+				);
+			}}
+		/>
+	);
+}
 
 const Message = (props) => {
 	return (
@@ -37,15 +57,8 @@ export const Dialog = (props) => {
 						key={m.id}/>)}
 			</div>
 			
-			<div className={s.messageCreater}>
-				<textarea onChange={props.onNewMessageChange} 
-					value={props.newMessageText} 
-					className={s.textarea} 
-					placeholder='Your message...'/>
-				<button onClick={(e) => props.newMessageText && props.onSendMessageClick(e, props.dialog.id)} className={s.button}>
-						>
-				</button>
-			</div>
+			<AddMessageForm onSubmit={({newMessageText}) => props.onSendNewMessage(newMessageText, props.dialog.id)}/>
+			
 		</div>
 	);
 }
