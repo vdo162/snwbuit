@@ -1,21 +1,27 @@
-import {Form, Field } from "react-final-form";
+import {Form, Field} from "react-final-form";
+import {composeValidators, requiredField, maxLenghtCreator} from "../../../../utils/validators/validators.js";
+import {Textarea} from '../../../common/FormsControls/FormsControls.js';
 import s from './MyPosts.module.css';
 import {Post} from './Post/Post.jsx';
 
 export const AddNewPostForm = (props) => {
 	return (
-		<Form onSubmit={props.onSubmit}
-			render={({handleSubmit}) => (
-				<form onSubmit={handleSubmit}>
-					<div> 
-						<Field name='newPostText' component='textarea'/>
-					</div>
-					<div>
-						<button>Add post</button>
-					</div>
-				</form>
+		<Form onSubmit={props.onSubmit}>
+			{({handleSubmit}) => (
+					<form onSubmit={handleSubmit}>
+						<div> 
+							<Field 
+								name='newPostText' 
+								component={Textarea} 
+								placeholder="Enter your post" 
+								validate={composeValidators(requiredField, maxLenghtCreator(30))}/>
+						</div>
+						<div>
+							<button>Add post</button>
+						</div>
+					</form>
 			)}
-		/>
+		</Form>		
 	);
 }
 
