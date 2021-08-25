@@ -58,14 +58,16 @@ export const login = (email, password, rememberMe, onErrorCallback) => (dispatch
 			.then(data => {
 				if (data.resultCode === 0) {
 					dispatch(getAuthUserData());					
-				} else if (data.resultCode === 10){
-					console.log('!captcha!');
 				} else {
-					onErrorCallback({[FORM_ERROR]: data.messages[0]});
+					let noValidField = data.fieldsErrors[0] 
+						? data.fieldsErrors[0].field
+						: FORM_ERROR;
+					let message = data.messages[0].length > 0 ? data.messages[0] : 'Some error';
+					onErrorCallback({[noValidField]: message});
 				} 
 			});
 }
-export const logout = (onErrorCallback) => (dispatch) => {
+export const logout = () => (dispatch) => {
 		authAPI.logout()
 			.then(data => {
 				if (data.resultCode === 0) {

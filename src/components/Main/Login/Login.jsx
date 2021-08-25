@@ -9,7 +9,7 @@ import s from './Login.module.css';
 const LoginForm = (props) => {
 		return (
 		<Form onSubmit={props.onSubmit}>
-			{({ handleSubmit, submitError}) =>{
+			{({ handleSubmit, submitError, submitErrors}) =>{
 				return (
 					<form className={s.form} onSubmit={handleSubmit}>
 						<div>
@@ -31,10 +31,15 @@ const LoginForm = (props) => {
 						<div>
 							<Field name='rememberMe' component='input' type='checkbox'/> remember me
 						</div>
-						{submitError && <div className="error">{submitError}</div>}
+						{submitErrors && submitErrors.captcha && <div className={s.error}>
+							{submitErrors.captcha}
+						</div>}
 						<div>
 							<button>Login</button>
 						</div>
+						{submitError && <div className={s.error}>
+							{submitError}
+						</div>}
 					</form>
 				) 
 			}}

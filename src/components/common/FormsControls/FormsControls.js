@@ -13,15 +13,15 @@ export const Textarea = ({input, meta, ...props}) => (
 );
 
 
-const FormControl = ({touched, error, children}) => {
-	const hasError = touched && error;
+const FormControl = ({touched, error, children, submitError}) => {
+	const hasError = touched && error || submitError;
 	return (
 		<div>
 			<div className={`${s.textarea} ${hasError && s.error}`}>
 				{children}
 			</div>
 			<div>
-				{hasError && <div className={s.errorText}>{error}</div>}
+				{hasError && <div className={s.errorText}>{error || submitError}</div>}
 			</div>
 		</div>
 	);
