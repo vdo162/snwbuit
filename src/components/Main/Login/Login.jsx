@@ -1,26 +1,20 @@
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import {Form, Field} from "react-final-form";
-import {FORM_ERROR} from "final-form";
 import {requiredField} from "../../../utils/validators/validators.js";
 import {Input} from '../../common/FormsControls/FormsControls.js';
+import {login} from '../../../redux/auth-reducer.js';
 import s from './Login.module.css';
 
-const Login = (props) => {
-	const onSubmit = (values) => {
-		console.log('send');
-		if(values.login !== 'dm' || values.password !== 'md'){
-			return {[FORM_ERROR]: 'No right login or password'};
-		}
-		return undefined;
-	}
-	return (
-		<Form onSubmit={onSubmit}>
+const LoginForm = (props) => {
+		return (
+		<Form onSubmit={props.onSubmit}>
 			{({ handleSubmit, submitError}) =>{
 				return (
 					<form className={s.form} onSubmit={handleSubmit}>
-					<h1>Login</h1>
 						<div>
 							<Field 
-								name='login' 
+								name='email' 
 								component={Input} 
 								placeholder="Email"
 								type="text"
@@ -47,4 +41,24 @@ const Login = (props) => {
 		</Form>
 	);
 }
-export default Login;
+
+const Login = (props) => {
+	const onSubmit = (formData, formAPI, onErrorCallback) => {
+		const {email, password, rememberMe} = formData;
+		props.login(email, password, rememberMe, onErrorCallback);
+	}
+	if(props.isAuth) return <Redirect to='/profile'/>;
+	return (
+		<div>
+			vdo162@gmail.com <br/>c4bjkDH5r
+			
+			<h1>Login</h1>
+			<LoginForm onSubmit={onSubmit}/>
+		</div>
+	);
+}
+
+const mapStateToProps = (state)=>({
+	isAuth: state.auth.isAuth
+});
+export default connect(mapStateToProps, {login})(Login);

@@ -18,7 +18,7 @@ export const Header = (props) => {
 					Login
 				</NavLink>}
 			{props.login && 
-				<div className={s.logout} onClick={() => {alert('Bye!')}}>
+				<div className={s.logout} onClick={props.onLogout}>
 					<span className={s.userName}>
 						{props.login}
 					</span>
