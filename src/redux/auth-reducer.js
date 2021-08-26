@@ -3,18 +3,14 @@ import {profileAPI} from '../api/api.js';
 import {FORM_ERROR} from "final-form";
 
 const SET_USER_DATA = 'SET-USER-DATA';
-const SET_AUTH_PROFILE = 'SET-AUTH-PROFILE';
+const SET_AUTH_FOTO = 'SET-AUTH-FOTO';
 
 let initialState = {
 	userId: null,
     email: null,
     login: null,
 	isAuth: false,
-	profile: {
-		photos: {
-			small: null
-		}
-	}
+	authPhoto: null
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -24,10 +20,10 @@ export const authReducer = (state = initialState, action) => {
 				...state,
 				...action.payload
 			};
-		case SET_AUTH_PROFILE:
+		case SET_AUTH_FOTO:
 			return {
 				...state,
-				profile: action.profile
+				authPhoto: action.photo
 			};
 		default:
 			return state;	
@@ -35,46 +31,46 @@ export const authReducer = (state = initialState, action) => {
 };
 
 export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USER_DATA, payload: {userId, email, login, isAuth}});
-export const setAuthProfile = (profile) => ({type: SET_AUTH_PROFILE, profile});
+export const setAuthFoto = (photo) => ({type: SET_AUTH_FOTO, photo});
 
 export const getAuthUserData = () => (dispatch) => {
-		authAPI.me()
-			.then(data => {
-				if (data.resultCode === 0) {
-					let {id, email, login} = data.data;
-					dispatch(setAuthUserData(id, email, login, true));
-					dispatch(getAuthProfile(id));	
-				} 
-			});
+	return authAPI.me()
+		.then(data => {
+			if (data.resultCode === 0) {
+				let {id, email, login} = data.data;
+				dispatch(setAuthUserData(id, email, login, true));
+				dispatch(getAuthPhoto(id));	
+			}
+		});
 }
-const getAuthProfile = (userId) => (dispatch) => {
+const getAuthPhoto = (userId) => (dispatch) => {
 		profileAPI.getProfile(userId)
 			.then(data => {
-				dispatch(setAuthProfile(data.data));
+				dispatch(setAuthFoto(data.data.photos.small));
 			});
 }
 export const login = (email, password, rememberMe, onErrorCallback) => (dispatch) => {
-		authAPI.login(email, password, rememberMe)
-			.then(data => {
-				if (data.resultCode === 0) {
-					dispatch(getAuthUserData());					
-				} else {
-					let noValidField = data.fieldsErrors[0] 
-						? data.fieldsErrors[0].field
-						: FORM_ERROR;
-					let message = data.messages[0].length > 0 ? data.messages[0] : 'Some error';
-					onErrorCallback({[noValidField]: message});
-				} 
-			});
+	authAPI.login(email, password, rememberMe)
+		.then(data => {
+			if (data.resultCode === 0) {
+				dispatch(getAuthUserData());					
+			} else {
+				let noValidField = data.fieldsErrors[0] 
+					? data.fieldsErrors[0].field
+					: FORM_ERROR;
+				let message = data.messages[0].length > 0 ? data.messages[0] : 'Some error';
+				onErrorCallback({[noValidField]: message});
+			} 
+		});
 }
 export const logout = () => (dispatch) => {
-		authAPI.logout()
-			.then(data => {
-				if (data.resultCode === 0) {
-					dispatch(setAuthUserData(null, null, null, false));
-					dispatch(setAuthProfile({photos: {small: null}}));					
-				} else {
-					console.log(data.messages[0]);
-				} 
-			});
+	authAPI.logout()
+		.then(data => {
+			if (data.resultCode === 0) {
+				dispatch(setAuthUserData(null, null, null, false));
+				dispatch(setAuthFoto(null));					
+			} else {
+				console.log(data.messages[0]);
+			} 
+		});
 }

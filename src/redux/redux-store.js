@@ -5,6 +5,7 @@ import {sidebarReducer} from './sidebar-reducer.js';
 import {usersReducer} from './users-reducer.js';
 import {authReducer} from './auth-reducer.js';
 import {friendsReducer} from './friends-reducer.js';
+import {appReducer} from './app-reducer.js';
 import thunkMiddleware from 'redux-thunk';
 
 let reducers = combineReducers({
@@ -13,7 +14,8 @@ let reducers = combineReducers({
 	sidebar: sidebarReducer,
 	usersPage: usersReducer,
 	auth: authReducer,
-	friendsPage: friendsReducer
+	friendsPage: friendsReducer,
+	app: appReducer
 });
 
 export let store = createStore(reducers, applyMiddleware(thunkMiddleware));

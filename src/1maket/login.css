@@ -1,0 +1,291 @@
+html, body {
+	height: 100%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	background: #edeef0;
+	margin: 0;
+}
+a {
+	text-decoration: none;
+}
+
+.appWrapper {
+	height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+@media(min-width: 480px) {
+	.appWrapper {
+		grid-template: auto 1fr / minmax(150px, auto) 1fr;
+	}
+}
+@media(min-width: 768px) {
+	.appWrapper {
+		grid-template: auto 1fr / 1fr 150px minmax(200px, 585px) 170px 1fr;
+	}
+}
+	.header {
+		grid-area: 1/1/2/2;
+		height: 50px;
+		background: #6fb2ff;
+		color: #fff;
+		display: grid;
+		grid-template-columns: 1fr 50px  minmax(auto, 800px) auto 1fr;
+		padding: 0px 10px;
+	}
+	@media(min-width: 480px) {
+		.header {
+			grid-area: 1/1/2/3;
+		}
+	}
+	@media(min-width: 768px) {
+		.header {
+			grid-area: 1/1/2/6;
+		}
+	}
+	
+		.headerLogo {
+			position: relative;
+			grid-column: 2/3;
+		}
+			.headerLogo img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+		.headerName {
+			align-self: center;
+			grid-column: 3/4;
+		}
+		.headerButton {
+			padding: 0px;
+			color: #fff;
+			border: none;
+			background: #6fb2ff;
+			grid-column: 4/5;
+		}
+	
+	.navbar {
+		grid-area: 3/1/4/2;
+		background: #6fb2ff;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		position: sticky;
+		bottom: 0;
+	}
+	@media(min-width: 480px) {
+		.navbar {
+			grid-area: 2/1/3/2;
+			padding: 10px;
+			position: static;
+			background: #edeef0;
+			color: #6fb2ff;
+			grid-template: repeat(4, 30px) / 1fr;
+			border-right: 1px #6fb2ff solid;
+		}
+	}
+	@media(min-width: 768px) {
+		.navbar {
+			grid-area: 2/2/3/3;
+		}
+	}
+		.navbarItem {
+			text-align: center;
+			line-height: 50px;
+			color: #fff;
+		}
+		@media(min-width: 480px) {
+			.navbarItem {
+				font-size: 90%;
+				text-align: start;
+				line-height: 30px;
+				color: #000;
+			}
+		}
+			.navbarItemActive {
+				background: #4a76a8;
+			}
+			@media(min-width: 480px) {
+				.navbarItemActive {
+					background: #edeef0;
+					color: #6fb2ff;
+				}
+			}
+
+	.main {
+		grid-area: 2/1/3/2;
+		background: #fff;
+	}
+	@media(min-width: 480px) {
+		.main {
+			grid-area: 2/2/3/3;
+		}
+	}
+	@media(min-width: 768px) {
+		.main {
+			grid-area: 2/3/3/4;
+			border-right: 1px #6fb2ff solid;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+		.login_wrapper {
+			height: 90%;
+			display: grid;
+			align-items: center;
+			justify-items: center;
+		}
+			.login {
+				box-shadow: 0 0 10px #bbbbbb;
+				border-radius: 7px;
+				margin: 10px;
+				padding: 20px;
+			}
+				.snw {
+					color: #6fb2ff; 
+					font-weight: bold;
+					text-align: center;
+				}
+				.title {
+					font-weight: bold;
+					font-size: 80%;
+					text-align: center;
+				}
+				.item {
+					margin: 0;
+					padding: 0;
+					border: 1px #6fb2ff solid;
+					color: #6fb2ff; 
+					border-radius: 5px;
+					margin-top: 10px;
+					overflow: hidden;
+				}
+				.item_error {
+					border: 1px #bd0c0c solid;
+					color: #bd0c0c; 
+				}
+					.item legend {
+						margin: 0 0 0 10px;
+					}
+					.input {
+						border: none;
+						outline: none;
+					}
+					.errorMessage {
+						padding: 3px;
+						color: white;
+						background: #bd0c0c;
+					}
+				.captcha {
+					width: 150px;
+				}
+				.submit {
+					display: grid;
+					grid-template-columns: auto 1fr;
+					align-items: center;
+					gap: 10px;
+				}
+					.remember {
+						margin-top: 10px;
+					}
+					.button {
+						margin-top: 10px;
+						border: none;
+						border-radius: 5px;
+						outline: none;
+						background: #9ecbff;
+						height: 30px;
+					}
+					
+				
+						/*border: 1px red solid;*/	
+					
+		
+		
+		
+		
+		
+	
+	.statusFriends {
+		display: none;
+	}
+	@media(min-width: 768px) {
+		.statusFriends {
+			display: block;
+			grid-area: 2/4/3/5;
+		}
+	}
+		.statusSearch {
+			padding: 13px 15px 13px 10px;
+			border-bottom: 1px solid #ccc;
+			border-image: linear-gradient(to right, #edeef0, #ccc, #edeef0) 0 0 10% 0;
+		}
+			.statusSearchWrap {
+				border: 1px solid #ccc;
+				border-radius: 10px;
+				display: grid;
+				grid-template-columns: 20px 1fr;
+			}
+				.statusSearchIcon {
+					align-self: center;
+					justify-self: center;
+					width: 60%;
+				}
+				.statusSearchInput {
+					border: none;
+					background: none;
+					width: 110px;
+					outline: none;
+				}
+			
+		.statusItems {
+		}
+			.statusItem {
+				padding: 8px 15px 8px 10px;
+				border-bottom: 1px solid #ccc;
+				border-image: linear-gradient(to right, #edeef0, #ccc, #edeef0) 0 0 10% 0;
+				display: grid;
+				grid-template-columns: 30px 110px 10px;
+			}
+				.statusAva {
+					position: relative;
+					padding-bottom: 100%;
+					border-radius: 500px;
+					overflow: hidden;
+				}
+					.statusAva img{
+						position: absolute;
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
+				.statusName {
+					padding-left: 5px;
+					align-self: center;
+					overflow: hidden;
+					font-size: 70%;
+					font-weight: bold;
+				}
+				.status{
+					align-self: center;
+					width: 5px;
+					border-radius: 5px;
+					padding: 2px;
+				}
+				.status.online {
+					background: #6fb2ff;
+				}
+				.status.offline {
+					background: #bbb;
+				}
+					.status div{
+						background: #edeef0;
+						width: 5px;
+						height: 5px;
+						border-radius: 3px;
+					}

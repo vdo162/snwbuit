@@ -1,3 +1,9 @@
+.noFriends {
+	padding: 8px 0 0 13px;
+	font-size: 85%;
+	color: #666666;
+}
+
 .friend {
 	padding: 15px 15px;
 	border-bottom: 2px solid #edeef0;

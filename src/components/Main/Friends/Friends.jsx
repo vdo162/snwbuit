@@ -35,9 +35,12 @@ export const Friends = (props) => {
 		<div>
 			{props.totalCount >= props.pageSize && <Paginator onPageGanged={props.onPageGanged} totalCount={props.totalCount} pageSize={props.pageSize} currentPage = {props.currentPage} />}
 			<div>
-				{props.friends.map(f => {
-					return <Friend friend={f} key={f.id} unfollow={props.unfollow} isFollowing={props.followingInProgress.some(id => id === f.id)}/>
-				})}
+				{(props.friends === null || !props.friends.length) 
+					? <div className={s.noFriends}>No friends...</div>
+					: props.friends.map(f => {
+						return <Friend friend={f} key={f.id} unfollow={props.unfollow} isFollowing={props.followingInProgress.some(id => id === f.id)}/>
+					})
+				}
 			</div>
 		</div>
 	);
