@@ -28,38 +28,41 @@
 				<a href='#s' class='navbarItem'>Friends</a>
 			</div>
 			<div class='main'>
-				<div class='login_wrapper'>
-					<div class='login'>
-						<div class='snw'>VAITISHNIK</div>
-						<div class='title'>Login</div>
-						<div>
-							<fieldset class='item item_error'>
-								<legend>Email</legend>
-								<input class='input'/>
-								<div class='errorMessage'>Incorrected symbols</div>
-							</fieldset>
-						</div>
-						<div>
-							<fieldset class='item'>
-								<legend>Password</legend>
-								<input type='password' class='input'/>
-							</fieldset>
-						</div>
-						<div>
-							<img src='img/captcha.png' class='captcha' />
-							<fieldset class='item item_error'>
-								<legend>Captcha</legend>
-								<input class='input'/>
-								<div class='errorMessage'>Incorrected symbols</div>
-							</fieldset>
-							
-						</div>
-						<div class='submit'>
-							<div class='remember'>
-								<input type='checkbox'class='remember_input'/> Remember Me
+				<div class='login'>
+					<div class='login_wrapper'>
+						<div class='login_form login_form_error'>
+							<div class='title'>Login</div>
+							<div class='block'>
+								<fieldset class='item item_error'>
+									<legend>Email</legend>
+									<input class='input'/>
+								</fieldset>
+								<div class='error'>Incorrected email</div>
 							</div>
-							<button class='button'>Login</button>
+							<div class='block'>
+								<fieldset class='item'>
+									<legend>Password</legend>
+									<input type='password' class='input'/>
+								</fieldset>
+							</div>
+							<div class='block'>
+								<div class='captcha'>
+									<img src='img/captcha.png' />
+								</div>
+								<fieldset class='item item_error'>
+									<legend>Captcha</legend>
+									<input class='input'/>
+								</fieldset>
+								<div class='error'>Incorrected symbols</div>
+							</div>
+							<div class='block submit'>
+								<div class='remember'>
+									<input type='checkbox'class='remember_input'/> Remember Me
+								</div>
+								<button class='button'>Login</button>
+							</div>
 						</div>
+						<div class='error'>Incorrected email or passord</div>
 					</div>
 				</div>
 			</div>

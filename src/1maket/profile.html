@@ -1,0 +1,172 @@
+<!-- Сообщаем браузеру как стоит обрабатывать эту страницу -->
+<!DOCTYPE html>
+<!-- Оболочка документа, указываем язык содержимого -->
+<html lang="ru">
+	<!-- Заголовок страницы, контейнер для других важных данных (не отображается) -->
+	<head>
+		<!-- Заголовок страницы в браузере -->
+		<title>Vit</title>
+		<!-- Подключаем CSS -->
+		<link rel="stylesheet" href="profile.css">
+		<!-- Кодировка страницы -->
+		<meta charset="UTF-8">
+		<!-- Адаптив -->
+		<meta name="viewport" content="width=device-width">
+	</head>
+	
+	<body>
+		<div class='appWrapper'>
+			<div class='header'>
+				<div class='headerLogo'><img src='img/logo.png' /></div>
+				<div  class='headerName'>VAITISHNIK</div>
+				<button  class='headerButton'>log in</button>
+			</div>
+			<div class='navbar'>
+				<a href='#s' class='navbarItem'>Profile</a>
+				<a href='#s' class='navbarItem'>Messages</a>
+				<a href='#s' class='navbarItem navbarItemActive'>Users</a>
+				<a href='#s' class='navbarItem'>Friends</a>
+			</div>
+			<div class='main'>
+				<div class='profile'>
+					<div class='profile_info'>
+						<div class='card'>
+							<div id='ava' class='ava' onclick="
+								if (ava.getAttribute('class') === 'ava') {
+									ava.setAttribute('class', 'ava avaBig');
+									cardName.setAttribute('class', 'cardName cardNameFullMode');
+									fullScreenAva.setAttribute('class', 'fullScreenAva turnOn');
+								} else {
+									ava.setAttribute('class', 'ava');
+									cardName.setAttribute('class', 'cardName');
+									fullScreenAva.setAttribute('class', 'fullScreenAva');
+								}
+							">
+								<img src='img/avaCircleSquare.png'>
+							</div>
+							<div id='cardName' class='cardName'>
+								<div class='cardFullName'>Jon snow</div>
+								<div class='cardStatus'>I am live</div>
+							</div>
+							<!--div class='file'>
+								<input id='fileInput' class='fileInput' type='file'/>
+								<label for="fileInput" class='fileLabel' >Upload</label>
+							</div-->
+						</div>
+						<div id='fullScreenAva' class='fullScreenAva' onclick="
+							ava.setAttribute('class', 'ava');
+							cardName.setAttribute('class', 'cardName');
+							fullScreenAva.setAttribute('class', 'fullScreenAva');
+						">
+							<img src='img/avaSquare.png' >
+						</div>
+						<div class='info'>
+							<div class='headers'>Info</div>
+							<div class='info_title'>About me:</div>
+							<div class='info_info'>vaitishik</div>
+							<div class='info_title'>Looking for a job:</div>
+							<div class='info_info'>yes</div>
+							<div class='headers'>Contacts</div>
+							<div class='info_title'>twitter:</div>
+							<div class='info_info'>1df23gd23gs</div>
+							<div class='info_title'>vk:</div>
+							<div class='info_info'>vk213.com</div>
+							<div class='info_title'>youtube:</div>
+							<div class='info_info'>gfdjfkl1645</div>
+						</div>
+					</div>
+					<div class='posts'>
+						<form class='newPostForm'>	
+							<div class='newPost_ava'>
+								<img src='img/avaCircleSquare.png' />
+							</div>
+							<div class='newPostCreator'>
+								<textarea class='newPostTextarea' placeholder='Your new post...'></textarea>
+								<button class='newPostButton'>
+										>
+								</button>
+							</div>
+						</form>
+						<div class='post'>
+							<div class='post_ava'>
+								<img src='img/avaCircleSquare.png' />
+							</div>
+							<div class='post_content'>
+								<div class='post_name'>
+									Dasha
+								</div>
+								<div class='post_date'>
+									8 aug 2021
+								</div>
+								<div class='post_text'>
+									Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt.
+								</div>
+								<div class='post_likes'>
+									<img class='post_heart' src='img/heart.png'/>
+									<div class='post_likes'>23</div>
+								</div>
+							</div>
+						</div>
+						<div class='post'>
+							<div class='post_ava'>
+								<img src='img/avaCircleSquare.png' />
+							</div>
+							<div class='post_content'>
+								<div class='post_name'>
+									Dasha
+								</div>
+								<div class='post_date'>
+									8 aug 2021
+								</div>
+								<div class='post_text'>
+									At vero eos et accusamus et iusto odio dignissimos ducimus)
+								</div>
+								<div class='post_likes'>
+									<img class='post_heart' src='img/heart.png'/>
+									23
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+			<div class="statusFriends">
+				<div class='statusSearch'>
+					<div class='statusSearchWrap'>
+						<img src='img/search.png' class='statusSearchIcon' />
+						<input class='statusSearchInput' placeholder='Search'/>
+					</div>
+				</div>
+				<div class='statusItems'>
+					<div class='statusItem'>
+						<div class='statusAva'><img src='img/avaCircle.png' /></div>
+						<div class='statusName'>
+							Name
+						</div>
+						<div class='status online'>
+							<div></div>
+						</div>
+					</div>
+					<div class='statusItem'>
+						<div class='statusAva'><img src='img/avaCircle.png' /></div>
+						<div class='statusName'>
+							Name
+						</div>
+						<div class='status offline'>
+							<div></div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</body>
+</html>

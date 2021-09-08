@@ -14,6 +14,7 @@ const Main = (props) => {
 		<Route path='/friends' render={() => <Friends/>}/>
 		<Route path='/profile/:userId?' render={() => <Profile />}/>
 		<Route path='/login' render={() => <LoginPage />}/> 
+		<Route exact path='/' render={() => <LoginPage />}/> 
 	</div>
   );
 }

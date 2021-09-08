@@ -1,7 +1,55 @@
-.postBlock {
-	padding: 10px;
-}
-
 .posts {
-	margin-top: 10px;
+	border-top: 1px #ddd solid;
 }
+	.form {
+		padding: 10px;
+		display: grid;
+		grid-template-columns: 40px 1fr; 
+		align-items: center;
+		box-shadow: 0 3px 3px #edeef0;
+		border-bottom: 1px #ddd solid;
+	}
+		.ava {
+			position: relative;
+			padding-bottom: 100%;
+			border-radius: 50%;
+			overflow: hidden;
+		}
+			.ava img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		.creator {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			border: 1px #6fb2ff solid;
+			margin-left: 10px;
+		}
+			.textarea {
+				font-family: inherit;
+				outline: none;
+				border: none;
+				resize: none;
+				padding: 5px 5px 2px 5px;
+				font-size: 90%;
+			}
+			.button {
+				outline: none;
+				border: none;
+				background: none;
+				color: #6fb2ff;
+				font-weight: bold;
+				font-size: 140%;
+				padding: 5px 10px 5px 10px;
+				line-height: 100%;
+			}
+			.button:active {
+				background: #6fb2ff;
+				color: #fff;
+				border: 1px #fff solid;
+			}
+			.button:disabled {
+				color: #ddd;
+			}

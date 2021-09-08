@@ -1,6 +1,89 @@
-.form{
+.loginForm {
+	height: 90%;
 	display: grid;
+	align-items: center;
+	grid-template-columns:1fr minmax(235px, 330px) 1fr;
 }
-.error{
-	color: red;
-}
+	.form {
+		grid-column: 2/3;
+		margin: 10px;
+	}
+		.testAuth {
+			font-size: 80%;
+			color: #ccc;
+			text-align: center;
+			margin-top: 20px;
+		}	
+		.wrapper {
+			background: white;
+			box-shadow: 0 0 10px #bbbbbb;
+			border-radius: 5px;
+			padding: 20px;
+			position: relative;
+			z-index: 1;
+		}
+		.wrapperError {
+			border: 1px #bd0c0c solid;
+		}
+			.title {
+				font-weight: bold;
+				font-size: 150%;
+				text-align: center;
+				color: #6fb2ff; 
+				padding-bottom: 10px;
+			}
+			.block {
+				margin-top: 15px;
+			}
+				.captcha {
+					text-align: center;
+				}
+				.item {
+					background: white;
+					color: #6fb2ff; 
+					border: 1px #6fb2ff solid;
+					border-radius: 5px;
+					margin: 0;
+					position: relative;
+					z-index: 1;
+				}
+				.itemError {
+					border-color: #bd0c0c;
+					color: #bd0c0c; 
+				}
+					.input {
+						border: none;
+						outline: none;
+						background-color: white;
+						width: calc(100% - 4px);
+					}
+				.error {
+					color: white;
+					font-size: 80%;
+					background: #bd0c0c;
+					padding: 5px 5px 2px 5px;
+					border-radius: 0 0 5px 5px;
+					position: relative;
+					top: -3px;
+				}
+				.submit {
+					display: grid;
+					grid-template-columns: auto 1fr;
+					align-items: center;
+					gap: 10px;
+				}
+					.remember {
+						margin-right: 10px;
+						font-size: 90%;
+					}
+					.button {
+						border: none;
+						border-radius: 5px;
+						outline: none;
+						background: #9ecbff;
+						height: 30px;
+						font-size: 80%;
+					}
+				
+		
+				/*border: 1px red solid;*/	

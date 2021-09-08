@@ -24,7 +24,7 @@ export const dialogsReducer = (state = initialState, action) => {
 					if (d.id === action.dialogId) {
 						let newId = d.messages[d.messages.length - 1].id + 1;
 						const date = new Date();
-						const [hour, minutes] = [date.getHours(), date.getMinutes()];
+						let [hour, minutes] = [date.getHours()+1, date.getMinutes()];
 						let time = `${hour}:${minutes > 9 ? minutes : '0' + minutes}`;
 						return {...d,
 							messages: [
@@ -43,7 +43,7 @@ export const dialogsReducer = (state = initialState, action) => {
 					if (d.id === action.dialogId) {
 						let newId = d.messages[d.messages.length - 1].id + 1;
 						const date = new Date();
-						const [hour, minutes] = [date.getHours(), date.getMinutes()];
+						const [hour, minutes] = [date.getHours()+1, date.getMinutes()];
 						let time = `${hour}:${minutes > 9 ? minutes : '0' + minutes}`;
 						return {...d,
 							messages: [

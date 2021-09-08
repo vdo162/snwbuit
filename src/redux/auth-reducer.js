@@ -3,7 +3,7 @@ import {profileAPI} from '../api/api.js';
 import {FORM_ERROR} from "final-form";
 
 const SET_USER_DATA = 'SET-USER-DATA';
-const SET_AUTH_FOTO = 'SET-AUTH-FOTO';
+const SET_AUTH_PHOTO = 'SET-AUTH-PHOTO';
 
 let initialState = {
 	userId: null,
@@ -20,7 +20,7 @@ export const authReducer = (state = initialState, action) => {
 				...state,
 				...action.payload
 			};
-		case SET_AUTH_FOTO:
+		case SET_AUTH_PHOTO:
 			return {
 				...state,
 				authPhoto: action.photo
@@ -31,7 +31,7 @@ export const authReducer = (state = initialState, action) => {
 };
 
 export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USER_DATA, payload: {userId, email, login, isAuth}});
-export const setAuthFoto = (photo) => ({type: SET_AUTH_FOTO, photo});
+export const setAuthPhoto = (photo) => ({type: SET_AUTH_PHOTO, photo});
 
 export const getAuthUserData = () => (dispatch) => {
 	return authAPI.me()
@@ -46,7 +46,7 @@ export const getAuthUserData = () => (dispatch) => {
 const getAuthPhoto = (userId) => (dispatch) => {
 		profileAPI.getProfile(userId)
 			.then(data => {
-				dispatch(setAuthFoto(data.data.photos.small));
+				dispatch(setAuthPhoto(data.data.photos.small));
 			});
 }
 export const login = (email, password, rememberMe, onErrorCallback) => (dispatch) => {
@@ -68,7 +68,7 @@ export const logout = () => (dispatch) => {
 		.then(data => {
 			if (data.resultCode === 0) {
 				dispatch(setAuthUserData(null, null, null, false));
-				dispatch(setAuthFoto(null));					
+				dispatch(setAuthPhoto(null));					
 			} else {
 				console.log(data.messages[0]);
 			} 

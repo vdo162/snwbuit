@@ -6,7 +6,7 @@ export const Profile = (props) => {
   return (
 	<div className={s.profile}>
 		<ProfileInfo {...props}/>
-		<MyPostsContainer />
+		<MyPostsContainer/>
 	</div>
   );
 };

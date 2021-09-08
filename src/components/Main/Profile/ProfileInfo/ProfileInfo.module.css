@@ -1,11 +1,210 @@
+:root {
+  --widthFoto: calc(10% + 35px);
+  --widthFoto480: calc(60% - 60px);
+}
+.personalCard {
+	position: relative;
+	margin: 10px 10px 0 10px;
+}
+		
+		
+/*border: 1px solid red;*/			
+	.editMode {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 10px;
+		align-items: center;
+		justify-items: end;
+		padding: 10px;
+		border-bottom: 1px solid #6fb2ff;
+		color: #6fb2ff;
+		font-size: 90%;
+	}
+		.toggle {
+			background: #edeef0;
+			width: 30px;
+			height: 14px;
+			border-radius: 7px;
+			transition: 0.2s;
+		}
+		.toggle.on {
+			background: #9ecbff;
+			justify-content: flex-end;
+		}
+
+		.arm {
+			margin-left: 0px;
+			background: #ddd;
+			width: 10px;
+			height: 10px;
+			border : solid #bbbbbb 2px;
+			border-radius: 7px;
+			transition: 0.2s;
+		}
+
+		.arm.on {
+			margin-left: 15px;
+			background: #6fb2ff;
+			border : solid #4a76a8 2px;
+		}
+		
+		
+		
+		
+		
+		
+
+	.fotoBlock {
+		position: relative;
+	}
+		.foto {
+			position: relative;
+			width: var(--widthFoto);
+			padding-bottom: var(--widthFoto);
+			border-radius: 50%;
+			overflow: hidden;
+			transition: 0.7s;
+		}
+		.foto.fullScreen {
+			width: 100%;
+			padding-bottom: 100%;
+			border-radius: 0;
+		}
+		@media(min-width: 480px) {
+			.foto {
+				width: var(--widthFoto480);
+				padding-bottom: var(--widthFoto480);
+				border-radius: 0;
+			}
+			.foto.fullScreen {
+				width: var(--widthFoto480);
+				padding-bottom: var(--widthFoto480);
+			}
+		}
+			.foto img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		.fullScreenFoto {
+			position: fixed;
+			z-index: 1;
+			top: 80px;
+			left: 50%;
+			width: 0px;
+			height: 0px;
+			background: rgba(0, 0, 0, 0.7);
+			opacity: 0;
+			transition: 0.4s;
+		}
+		.fullScreenFoto.fullScreen{
+			top: 80px;
+			left: 50%;
+			width: 0px;
+			height: 0px;
+			opacity: 0;
+		}
+		@media(min-width: 480px) {
+			.fullScreenFoto.fullScreen{
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 1;
+			}
+		}
+			.fullScreenFoto img{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+		
+		.upload{
+			visibility: hidden;
+			opacity: 0;
+			position: absolute;
+		}	
+		.uploadButton {
+			display: block;
+			position: absolute;
+			top: 0;
+			z-index: 1;
+			width: calc(var(--widthFoto) - 1px);
+			height: calc(100% - 2px);
+			background: rgba(255, 255, 255, 0.8);
+			border: 1px solid #6fb2ff;
+			border-radius: 50%;
+			overflow: hidden;
+			color: #6fb2ff;
+			font-weight: bold;
+			font-size: 96%;
+			transition: 0.7s;
+		}
+		@media(min-width: 480px) {
+			.uploadButton{
+				width: var(--widthFoto480);
+				border-radius: 0%;
+			}
+		}	
+			.align {
+				height: 100%;
+				display: grid;
+				justify-items: center;
+				align-items: center;
+			}
+	.cardInfo {
+		position: absolute;
+		top: 12%;
+		left: calc(var(--widthFoto) + 5px);
+		transition: 0.7s;
+	}
+	.cardInfo.fullScreen {
+		top: calc(100% - 2.7em);
+		left: 5px;
+		text-shadow: 1px 1px 3px #fff, 1px -1px 3px #fff, -1px 1px 3px #fff, -1px -1px 3px #fff;
+	}
+	@media(min-width: 480px) {
+		.cardInfo {
+			top: 0;
+			left: calc(var(--widthFoto480) + 2%);
+		}
+		.cardInfo.fullScreen {
+			top: 0;
+			left: calc(var(--widthFoto480) + 2%);
+		}
+	}
+		.fullName {
+			color: #6fb2ff;
+			font-weight: bold;
+			font-size: 110%;
+		}
+		.status {
+			color: #000;
+			font-size: 80%;
+			padding-left: 1px;
+		}		
 .descriptionBlock {
 	padding: 10px;
-}
-
-.title {
-	font-weight: bold;
-}
-
-.status {
-	padding-left: 5px;
-}
+	display: grid;
+	grid-template-columns: auto 1fr;
+	row-gap: 10px;	
+	column-gap: calc(20% - 40px);	
+}	
+	.descriptionTitle {
+		grid-column: 1/3;
+		color: #6fb2ff;
+		border-top: 1px solid #ccc;
+		border-image: linear-gradient(to right, #fff, #eee, #fff) 10%;
+		padding: 10px 0 0 0;
+	}
+	.descriptionName {
+		color: #bbbbbb;
+		font-size: 80%;
+		padding: 0 0 0 10px;
+	}
+	.descriptionContent {
+		color: #6fb2ff;
+		font-size: 90%;
+	}

@@ -127,90 +127,82 @@ a {
 			border-right: 1px #6fb2ff solid;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-		.login_wrapper {
+		.login {
 			height: 90%;
 			display: grid;
 			align-items: center;
 			justify-items: center;
 		}
-			.login {
-				box-shadow: 0 0 10px #bbbbbb;
-				border-radius: 7px;
+			.login_wrapper {
 				margin: 10px;
-				padding: 20px;
 			}
-				.snw {
-					color: #6fb2ff; 
-					font-weight: bold;
-					text-align: center;
-				}
-				.title {
-					font-weight: bold;
-					font-size: 80%;
-					text-align: center;
-				}
-				.item {
-					margin: 0;
-					padding: 0;
-					border: 1px #6fb2ff solid;
-					color: #6fb2ff; 
+				.login_form {
+					background: white;
+					box-shadow: 0 0 10px #bbbbbb;
 					border-radius: 5px;
-					margin-top: 10px;
-					overflow: hidden;
+					padding: 20px;
+					position: relative;
+					z-index: 1;
 				}
-				.item_error {
+				.login_form_error {
 					border: 1px #bd0c0c solid;
-					color: #bd0c0c; 
 				}
-					.item legend {
-						margin: 0 0 0 10px;
+					.title {
+						font-weight: bold;
+						font-size: 150%;
+						text-align: center;
+						color: #6fb2ff; 
+						padding-bottom: 10px;
 					}
-					.input {
-						border: none;
-						outline: none;
+					.block {
+						margin-top: 15px;
 					}
-					.errorMessage {
-						padding: 3px;
-						color: white;
-						background: #bd0c0c;
-					}
-				.captcha {
-					width: 150px;
-				}
-				.submit {
-					display: grid;
-					grid-template-columns: auto 1fr;
-					align-items: center;
-					gap: 10px;
-				}
-					.remember {
-						margin-top: 10px;
-					}
-					.button {
-						margin-top: 10px;
-						border: none;
-						border-radius: 5px;
-						outline: none;
-						background: #9ecbff;
-						height: 30px;
-					}
-					
-				
+						.captcha {
+							text-align: center;
+						}
+						.item {
+							font-family: inherit;
+							background: white;
+							color: #6fb2ff; 
+							border: 1px #6fb2ff solid;
+							border-radius: 5px;
+							margin: 0 0 0 0;
+							position: relative;
+							z-index: 1;
+						}
+						.item.item_error {
+							border-color: #bd0c0c;
+							color: #bd0c0c; 
+						}
+							.input {
+								border: none;
+								outline: none;
+							}
+						.error {
+							color: white;
+							font-size: 80%;
+							background: #bd0c0c;
+							padding: 5px 5px 2px 5px;
+							border-radius: 0 0 5px 5px;
+							position: relative;
+							top: -3px;
+						}
+						.submit {
+							display: grid;
+							grid-template-columns: auto 1fr;
+							align-items: center;
+							gap: 10px;
+						}
+							.remember {
+							}
+							.button {
+								border: none;
+								border-radius: 5px;
+								outline: none;
+								background: #9ecbff;
+								height: 30px;
+							}
 						/*border: 1px red solid;*/	
-					
-		
-		
-		
-		
-		
-	
 	.statusFriends {
 		display: none;
 	}

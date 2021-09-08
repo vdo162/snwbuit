@@ -1,23 +1,22 @@
 import {Form, Field } from "react-final-form";
 import {composeValidators, requiredField, maxLenghtCreator} from "../../../../utils/validators/validators.js";
-import {Textarea} from '../../../common/FormsControls/FormsControls.js';
 import s from './Dialog.module.css';
 import ava from '../../../../img/avaSquare.png';
 
 const AddMessageForm = (props) => {
 	return (
 		<Form onSubmit={props.onSubmit}>
-			{({handleSubmit}) => {
+			{({handleSubmit, errors}) => {
 				return (
 					<form onSubmit={handleSubmit} className={s.messageCreater}>
 						<Field 
-							component={Textarea}  
+							component='textarea'  
 							name='newMessageText'
 							className={s.textarea} 
 							placeholder='Your message...'
 							validate={composeValidators(requiredField, maxLenghtCreator(50))}
 						/>
-						<button className={s.button}>
+						<button className={s.button} disabled={errors.newMessageText}>
 							>
 						</button>
 					</form>

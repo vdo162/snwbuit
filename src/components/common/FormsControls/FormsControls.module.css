@@ -1,7 +1,36 @@
-.textarea {
-	
+.block {
+	margin-top: 15px;
 }
-.error {
+	.item {
+		background: white;
+		color: #6fb2ff; 
+		border: 1px #6fb2ff solid;
+		border-radius: 5px;
+		margin: 0;
+		position: relative;
+		z-index: 1;
+	}
+	.itemError {
+		border-color: #bd0c0c;
+		color: #bd0c0c; 
+	}
+		.input {
+			border: none;
+			outline: none;
+			background-color: white;
+			width: calc(100% - 4px);
+		}
+	.error {
+		color: white;
+		font-size: 80%;
+		background: #bd0c0c;
+		padding: 5px 5px 2px 5px;
+		border-radius: 0 0 5px 5px;
+		position: relative;
+		top: -3px;
+	}
+
+.errorT {
 	border: solid red 2px;
 }
 .errorText {
