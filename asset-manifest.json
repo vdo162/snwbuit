@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/snwbuit/static/css/main.384b5514.chunk.css",
-    "main.js": "/snwbuit/static/js/main.88628405.chunk.js",
-    "main.js.map": "/snwbuit/static/js/main.88628405.chunk.js.map",
+    "main.js": "/snwbuit/static/js/main.e9645fd2.chunk.js",
+    "main.js.map": "/snwbuit/static/js/main.e9645fd2.chunk.js.map",
     "runtime-main.js": "/snwbuit/static/js/runtime-main.e8cb586e.js",
     "runtime-main.js.map": "/snwbuit/static/js/runtime-main.e8cb586e.js.map",
     "static/js/2.07d4590f.chunk.js": "/snwbuit/static/js/2.07d4590f.chunk.js",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.e8cb586e.js",
     "static/js/2.07d4590f.chunk.js",
     "static/css/main.384b5514.chunk.css",
-    "static/js/main.88628405.chunk.js"
+    "static/js/main.e9645fd2.chunk.js"
   ]
 }
