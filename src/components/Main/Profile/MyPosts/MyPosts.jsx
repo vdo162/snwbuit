@@ -44,7 +44,7 @@ export const MyPosts = (props) => {
 		
 	let onAddPost = ({newPostText}) => {
 		let date = new Date();
-		let formatDate = `${date.getDate()}.${(date.getMonth() >= 9) ? (date.getMonth()+1) : '0' + (date.getMonth()+1)}.${date.getFullYear()} ${date.getHours()+1}:${(date.getMinutes() >= 10) ? (date.getMinutes()) : '0' + (date.getMinutes())}`;
+		let formatDate = `${date.getDate()}.${(date.getMonth() >= 9) ? (date.getMonth()+1) : '0' + (date.getMonth()+1)}.${date.getFullYear()} ${date.getHours()}:${(date.getMinutes() >= 10) ? (date.getMinutes()) : '0' + (date.getMinutes())}`;
 		props.addPost(props.auth.userId, props.auth.login, props.auth.authPhoto, newPostText, formatDate);
 	} 
 	
