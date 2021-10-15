@@ -1,3 +1,4 @@
+import {memo} from 'react'
 import {Form, Field} from "react-final-form";
 import {composeValidators, requiredField, maxLenghtCreator} from "../../../../utils/validators/validators.js";
 import s from './MyPosts.module.css';
@@ -29,31 +30,32 @@ export const AddNewPostForm = (props) => {
 	);
 }
 
-export const MyPosts = (props) => {
-	let postsElements = props.posts.map(p => <Post  
-		id={p.id}
-		userId={p.userId}
-		name={p.name}
-		photo={p.photo}
-		message={p.message} 
-		likesCount={p.likesCount}
-		date={p.date}
-		putLike={props.putLike}
-		key={p.id}
-	/>);	
+export const MyPosts = memo(props => {
+		let postsElements = props.posts.map(p => <Post  
+			id={p.id}
+			userId={p.userId}
+			name={p.name}
+			photo={p.photo}
+			message={p.message} 
+			likesCount={p.likesCount}
+			date={p.date}
+			putLike={props.putLike}
+			key={p.id}
+		/>);	
+			
+		let onAddPost = ({newPostText}) => {
+			let date = new Date();
+			let formatDate = `${date.getDate()}.${(date.getMonth() >= 9) ? (date.getMonth()+1) : '0' + (date.getMonth()+1)}.${date.getFullYear()} ${date.getHours()}:${(date.getMinutes() >= 10) ? (date.getMinutes()) : '0' + (date.getMinutes())}`;
+			props.addPost(props.auth.userId, props.auth.login, props.auth.authPhoto, newPostText, formatDate);
+		} 
 		
-	let onAddPost = ({newPostText}) => {
-		let date = new Date();
-		let formatDate = `${date.getDate()}.${(date.getMonth() >= 9) ? (date.getMonth()+1) : '0' + (date.getMonth()+1)}.${date.getFullYear()} ${date.getHours()}:${(date.getMinutes() >= 10) ? (date.getMinutes()) : '0' + (date.getMinutes())}`;
-		props.addPost(props.auth.userId, props.auth.login, props.auth.authPhoto, newPostText, formatDate);
-	} 
-	
-	return (
-		<div className={s.posts}>
-			<AddNewPostForm onSubmit={onAddPost} photo={props.auth.authPhoto}/>
-			<div>
-				{postsElements.reverse()}
+		return (
+			<div className={s.posts}>
+				<AddNewPostForm onSubmit={onAddPost} photo={props.auth.authPhoto}/>
+				<div>
+					{postsElements.reverse()}
+				</div>
 			</div>
-		</div>
-	);
-}
+		);
+	}
+)
