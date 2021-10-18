@@ -60,7 +60,7 @@ export const login = (email, password, rememberMe, onErrorCallback) => async (di
 	} 
 }
 export const logout = () => async (dispatch) => {
-	let data = authAPI.logout();
+	let data = await authAPI.logout();
 	if (data.resultCode === 0) {
 		dispatch(setAuthUserData(null, null, null, false));
 		dispatch(setAuthPhoto(null));					
