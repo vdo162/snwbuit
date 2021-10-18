@@ -31,17 +31,19 @@ export const AddNewPostForm = (props) => {
 }
 
 export const MyPosts = memo(props => {
-		let postsElements = props.posts.map(p => <Post  
-			id={p.id}
-			userId={p.userId}
-			name={p.name}
-			photo={p.photo}
-			message={p.message} 
-			likesCount={p.likesCount}
-			date={p.date}
-			putLike={props.putLike}
-			key={p.id}
-		/>);	
+		let postsElements = [...props.posts]
+			.reverse()
+			.map(p => <Post  
+				id={p.id}
+				userId={p.userId}
+				name={p.name}
+				photo={p.photo}
+				message={p.message} 
+				likesCount={p.likesCount}
+				date={p.date}
+				putLike={props.putLike}
+				key={p.id}
+			/>);	
 			
 		let onAddPost = ({newPostText}) => {
 			let date = new Date();
@@ -53,7 +55,7 @@ export const MyPosts = memo(props => {
 			<div className={s.posts}>
 				<AddNewPostForm onSubmit={onAddPost} photo={props.auth.authPhoto}/>
 				<div>
-					{postsElements.reverse()}
+					{postsElements}
 				</div>
 			</div>
 		);
