@@ -131,25 +131,19 @@ export const setStatus = (status) => ({type: SET_STATUS, status});
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 export const putLike = (id) => ({type: PUT_LIKE, id});
 
-export const getUserProfile = (userId) => (dispatch) => {
-		dispatch(setIsFetching(true));
-		profileAPI.getProfile(userId)
-			.then(response =>{
-				dispatch(setUserProfile(response.data));
-				dispatch(setIsFetching(false));
-			});
+export const getUserProfile = (userId) => async (dispatch) => {
+	dispatch(setIsFetching(true));
+	let response = await profileAPI.getProfile(userId);
+	dispatch(setUserProfile(response.data));
+	dispatch(setIsFetching(false));
 }
-export const getStatus = (userId) => (dispatch) => {
-		profileAPI.getStatus(userId)
-			.then(response =>{
-				dispatch(setStatus(response.data));
-			});
+export const getStatus = (userId) => async (dispatch) => {
+	let response = await profileAPI.getStatus(userId);
+	dispatch(setStatus(response.data));
 }
-export const updateStatus = (status) => (dispatch) => {
-		profileAPI.updateStatus(status)
-			.then(data => {
-				if(data.resultCode === 0) {
-					dispatch(setStatus(status));
-				}
-			});
+export const updateStatus = (status) => async (dispatch) => {
+	let data = await profileAPI.updateStatus(status);
+	if(data.resultCode === 0) {
+		dispatch(setStatus(status));
+	}
 }

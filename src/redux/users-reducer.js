@@ -82,35 +82,28 @@ export const setTotalCountUsers = (totalUsersCount) => ({type: SET_TOTAL_COUNT_U
 export const toggleIsFetching = (isFetching) => ({type: USERS_TOGGLE_IS_FETCHING, isFetching});
 export const toggleFollowingProgress = (userId, isFetching) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, userId, isFetching});
 
-export const requestUsers = (page, pageSize) => (dispatch) => {
-		dispatch(toggleIsFetching(true));
-		dispatch(setCurrentPage(page));
-		usersAPI.getUsers(page, pageSize)
-			.then((data)=>{
-				dispatch(setUsers(data.items));
-				dispatch(setTotalCountUsers(data.totalCount));
-				dispatch(toggleIsFetching(false));
-			});
+export const requestUsers = (page, pageSize) => async (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	dispatch(setCurrentPage(page));
+	let data = await usersAPI.getUsers(page, pageSize);
+	dispatch(setUsers(data.items));
+	dispatch(setTotalCountUsers(data.totalCount));
+	dispatch(toggleIsFetching(false));
 }
-export const follow = (userId) => (dispatch) => {
-		dispatch(toggleFollowingProgress(userId, true));
-		usersAPI.follow(userId)
-			.then((data)=>{
-				if(data.resultCode === 0) {
-					dispatch(followSuccess(userId));
-					dispatch(getFriends());
-				}
-				dispatch(toggleFollowingProgress(userId, false));
-			});
+
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+	dispatch(toggleFollowingProgress(userId, true));
+	let data = await apiMethod(userId);
+	if(data.resultCode === 0) {
+		dispatch(actionCreator(userId));
+		dispatch(getFriends());
+	}
+	dispatch(toggleFollowingProgress(userId, false));
 }
-export const unfollow = (userId) => (dispatch) => {
-		dispatch(toggleFollowingProgress(userId, true));
-		usersAPI.unfollow(userId)
-			.then((data)=>{
-				if(data.resultCode === 0) {
-					dispatch(unfollowSuccess(userId));
-					dispatch(getFriends());
-				}
-				dispatch(toggleFollowingProgress(userId, false));
-			});
+
+export const follow = (userId) => async (dispatch) => {
+	followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess);
+}
+export const unfollow = (userId) => async (dispatch) => {
+	followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess);
 }
