@@ -16,7 +16,7 @@ const User = (props) => {
 				<div className={s.name}>
 					{props.user.name}
 				</div>
-				<div>
+				<div className={s.status}>
 					Status: {props.user.status ? props.user.status : 'No status'}
 				</div>
 			</div>
@@ -35,7 +35,7 @@ const User = (props) => {
 export const Users = (props) => {
 	return (
 		<div>
-			<Paginator onPageGanged={props.onPageGanged} totalCount={props.totalCount} pageSize={props.pageSize} currentPage = {props.currentPage} />
+			<Paginator onPageGanged={props.onPageGanged} totalCount={props.totalCount} pageSize={props.pageSize} currentPage = {props.currentPage} portionSize={10}/>
 			<div>
 				{props.users.map(u => {
 					return <User user={u} key={u.id} unfollow={props.unfollow} follow={props.follow} isFollowing={props.followingInProgress.some(id => id === u.id)}/>

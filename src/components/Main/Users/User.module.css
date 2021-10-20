@@ -25,6 +25,10 @@
 		.name{
 			font-weight: bold;
 		}
+		.status{
+			max-width: 250px;
+			overflow: hidden;
+		}
 		.followButton{
 			font: inherit;
 			padding: 0px;
