@@ -63,8 +63,8 @@ export const logout = () => async (dispatch) => {
 	let data = await authAPI.logout();
 	if (data.resultCode === 0) {
 		dispatch(setAuthUserData(null, null, null, false));
-		dispatch(setAuthPhoto(null));					
+		dispatch(setAuthPhoto(null));		
 	} else {
-		console.log(data.messages[0]);
+		console.log('auth-reduser:' + data.messages[0]);
 	}
 }
