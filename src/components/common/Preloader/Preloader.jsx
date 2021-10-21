@@ -1,6 +1,7 @@
 import s from './Preloader.module.css'
 
 export const Preloader = (props) => {
+	let message = props.message ? props.message : 'Loading data...'
 	return (
 		<div className={s.preloader}>
 			<div className={s.wrapper}>
@@ -10,7 +11,7 @@ export const Preloader = (props) => {
 					<div className={s.square + ' ' + s.square4}></div>
 					<div className={s.square + ' ' + s.square3}></div>
 				</div>
-				<div className={s.text}>Downloading...</div>
+				<div className={s.text}>{message}</div>
 			</div>
 		</div>
 	)

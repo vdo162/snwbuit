@@ -24,9 +24,11 @@
 	}
 		.name{
 			font-weight: bold;
+			max-width: 215px;
+			overflow: hidden;
 		}
 		.status{
-			max-width: 250px;
+			max-width: 215px;
 			overflow: hidden;
 		}
 		.followButton{
