@@ -42,10 +42,10 @@ export const getAuthUserData = () => async(dispatch) => {
 	}
 }
 const getAuthPhoto = (userId) => (dispatch) => {
-		profileAPI.getProfile(userId)
-			.then(data => {
-				dispatch(setAuthPhoto(data.data.photos.small));
-			});
+	profileAPI.getProfile(userId)
+		.then(data => {
+			dispatch(setAuthPhoto(data.data.photos.small));
+		});
 }
 export const login = (email, password, rememberMe, onErrorCallback) => async (dispatch) => {
 	let data = await authAPI.login(email, password, rememberMe);

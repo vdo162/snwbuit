@@ -1,4 +1,5 @@
 import {profileAPI} from '../api/api.js';
+import {FORM_ERROR} from "final-form";
 
 const ADD_POST = 'ADD-POST';
 const DELETE_POST = 'DELETE_POST';
@@ -128,7 +129,7 @@ export const profileReducer = (state = initialState, action) => {
 					...state.profile,
 					photos: action.photos
 				}
-			}
+			}			
 		default:
 			return state;	
 	};	
@@ -162,5 +163,19 @@ export const savePhoto = (file) => async (dispatch) => {
 	const data = await profileAPI.savePhoto(file);
 	if (data.resultCode === 0) {
 		dispatch(savePhotoSuccess(data.data.photos));
+	}
+}
+
+export const sendProfile = (profile, onErrorCallback) => async (dispatch) => {
+	const data = await profileAPI.sendProfile(profile);
+	if (data.resultCode === 0) {
+		dispatch(getUserProfile(profile.userId));
+		return true;
+	} else {
+		let noValidField = data.fieldsErrors[0]
+			? data.fieldsErrors[0].field
+			: FORM_ERROR;
+		let message = data.messages[0].length > 0 ? data.messages[0] : 'Some error';
+		onErrorCallback({[noValidField]: message});
 	}
 }
