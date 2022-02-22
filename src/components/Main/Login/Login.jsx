@@ -5,12 +5,11 @@ import {requiredField} from "../../../utils/validators/validators.js";
 import {LoginInput} from '../../common/FormsControls/FormsControls.js';
 import {login} from '../../../redux/auth-reducer.js';
 import s from './Login.module.css';
-import captcha from '../../../img/captcha.png';
 
 const LoginForm = (props) => {
 	return (
-		<Form onSubmit={props.onSubmit} >
-			{({ handleSubmit, errors, submitError, submitErrors, ...props}) =>{
+		<Form onSubmit={props.onSubmit} captchaUrl={props.captchaUrl}>
+			{({ handleSubmit, errors, submitError, submitErrors, captchaUrl, ...props}) =>{
 				return (
 					<div className={s.loginForm}>
 						<form onSubmit={handleSubmit} className={s.form} >
@@ -27,14 +26,14 @@ const LoginForm = (props) => {
 									type="password"
 									validate={requiredField}
 									legend='Password'/>
-								{submitErrors && submitErrors.captcha&& 
+								{captchaUrl &&
 									<Field 
 										name='captcha' 
 										render={({input, meta, ...props}) => {
 											return (
 												<div className={s.block}>
 													<div className={s.captcha}>
-														<img src={captcha} alt=''/>
+														<img src={captchaUrl} alt=''/>
 													</div>
 													<fieldset className={s.item + ' ' + s.itemError}>
 														<legend>Captcha</legend>
@@ -73,14 +72,15 @@ const LoginForm = (props) => {
 
 const Login = (props) => {
 	const onSubmit = (formData, formAPI, onErrorCallback) => {
-		const {email, password, rememberMe} = formData;
-		props.login(email, password, rememberMe, onErrorCallback);
+		const {email, password, rememberMe, captcha} = formData;
+		props.login(email, password, rememberMe, onErrorCallback, captcha);
 	}
 	if(props.isAuth) return <Redirect to='/profile'/>;
-	return <LoginForm onSubmit={onSubmit}/>;
+	return <LoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>;
 }
 
 const mapStateToProps = (state)=>({
-	isAuth: state.auth.isAuth
+	isAuth: state.auth.isAuth,
+	captchaUrl: state.auth.captchaUrl
 });
 export default connect(mapStateToProps, {login})(Login);
