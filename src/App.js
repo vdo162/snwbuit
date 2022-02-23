@@ -20,14 +20,21 @@ const App = (props) => {
 }
 
 class AppContainer extends React.Component {
+	catchAllUnhandledErrors = (e) => {
+		alert("Необработанный промис - позор программисту: " + e.reason.message);
+	}
 	componentDidMount() {
 		this.props.initializeApp();
+		window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+	}
+	componentWillUnmount() {
+		window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
 	}
 	render() {
-		return (!this.props.initialized) 
+		return (!this.props.initialized)
 			? <Preloader/>
 			: <App {...this.props}/>;
-		
+
 	}
 }
 

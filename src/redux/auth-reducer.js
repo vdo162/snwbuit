@@ -60,7 +60,6 @@ export const login = (email, password, rememberMe, onErrorCallback, captcha) => 
 	if (data.resultCode === 0) {
 		dispatch(getAuthUserData());					
 	} else {
-		debugger
 		if (data.resultCode === 10) {
 			dispatch(getCaptchaUrl());
 		}
